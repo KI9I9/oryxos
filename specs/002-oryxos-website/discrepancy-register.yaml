@@ -1,0 +1,302 @@
+schema_version: "1.0"
+feature: "002-oryxos-website"
+reviewed_at: "2026-08-14"
+scope:
+  repository: "k-oryxos"
+  baseline: "working-tree"
+  notes: >-
+    This register records conflicts relevant to the website plan. Feature 002 may fix website and deployment
+    configuration, but it does not edit README.md or existing authoritative project documents.
+
+discrepancies:
+  - discrepancy_id: "DISC-DEPLOY-001"
+    category: "deployment"
+    claim_id: null
+    sources:
+      - type: "feature-spec"
+        path: "specs/002-oryxos-website/spec.md"
+        locator: "FR-032 and FR-033"
+        statement: "Pages deployment is manual-only and requires release review."
+      - type: "workflow"
+        path: ".github/workflows/deploy-pages.yml"
+        locator: "on.push.branches"
+        statement: "A push to main affecting website files starts the deployment workflow."
+    observed_fact: >-
+      The current workflow can deploy automatically after a main-branch push, which violates the validation-only
+      deployment policy.
+    affected_routes: ["*"]
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: false
+    formal_publication_blocked: true
+    status: "open"
+    required_action: >-
+      Feature 002 must remove the push trigger, retain workflow_dispatch only, and require the protected
+      github-pages Environment after exact-ref validation.
+    resolution_evidence:
+      - "Updated .github/workflows/deploy-pages.yml"
+      - "Workflow syntax and trigger review"
+      - "Successful manually approved validation run"
+
+  - discrepancy_id: "DISC-DEPLOY-002"
+    category: "build"
+    claim_id: null
+    sources:
+      - type: "governance"
+        path: ".specify/memory/constitution.md"
+        locator: "OryxOS Website technical baseline"
+        statement: "Website builds use a repository-fixed Node.js 24 LTS version."
+      - type: "workflow"
+        path: ".github/workflows/deploy-pages.yml"
+        locator: "actions/setup-node node-version"
+        statement: "The workflow currently selects Node.js 20."
+    observed_fact: "The current Pages build does not meet the Node.js 24 LTS governance baseline."
+    affected_routes: ["*"]
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: false
+    formal_publication_blocked: true
+    status: "open"
+    required_action: >-
+      Feature 002 must add the repository Node version file and make website CI and Pages deployment consume it.
+    resolution_evidence:
+      - "website/.nvmrc identifies an exact Node.js 24 LTS release"
+      - "CI and Pages workflow read the same version file"
+      - "npm ci and npm run docs:build pass on Node.js 24"
+
+  - discrepancy_id: "DISC-GOVERNANCE-001"
+    category: "governance"
+    claim_id: "CLAIM-AGENT-DEFINITION"
+    sources:
+      - type: "governance"
+        path: ".specify/memory/constitution.md"
+        locator: "Principle VIII"
+        statement: "One YAML Profile completely defines an Agent."
+      - type: "feature-spec"
+        path: "specs/002-oryxos-website/spec.md"
+        locator: "Clarifications and FR-019"
+        statement: "Skill defines what an Agent does, Profile defines how it runs, and together they define an Agent."
+    observed_fact: >-
+      The website's clarified conceptual equation adds Skill as a defining component while the current
+      Constitution wording assigns complete definition to Profile alone. The compatible operational caveat is
+      that Profile remains the authoritative configuration entry and declares or references Skill, but the
+      wording still requires a separate governance reconciliation.
+    affected_routes:
+      - "/architecture"
+      - "/docs/concepts/design-principles"
+      - "/docs/runtime/skill-profile"
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A separate governance/documentation feature must reconcile the canonical Agent definition across the
+      Constitution and authoritative project documentation without weakening Profile as the runtime entry point.
+    resolution_evidence:
+      - "Approved Constitution or specification amendment"
+      - "Updated authoritative documentation"
+      - "Cross-document terminology review"
+
+  - discrepancy_id: "DISC-POSITIONING-001"
+    category: "positioning"
+    claim_id: "CLAIM-PROJECT-MATURITY"
+    sources:
+      - type: "documentation"
+        path: "README.md"
+        locator: "Tagline, introduction, Agent OS comparison, and feature descriptions"
+        statement: >-
+          OryxOS is presented as a distributed Agent OS with production-ready, reliable, secure, and fleet-level
+          behavior.
+      - type: "feature-spec"
+        path: "specs/002-oryxos-website/spec.md"
+        locator: "FR-002, FR-003, and FR-015"
+        statement: >-
+          The website must identify OryxOS as pre-alpha, show the single-node Runtime Kernel as the current focus,
+          and label distributed collaboration as Vision.
+    observed_fact: >-
+      Current source and verified build evidence do not establish the broad production-ready distributed behavior
+      stated in README; the website must use the narrower pre-alpha and single-node positioning.
+    affected_routes:
+      - "/"
+      - "/architecture"
+      - "/roadmap"
+      - "/docs/concepts/what-is-oryxos"
+      - "/docs/project/project-status"
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A separate documentation feature must reconcile README positioning, maturity, security, and distributed
+      capability claims with verified source and release evidence.
+    resolution_evidence:
+      - "Evidence-backed capability inventory"
+      - "Updated README and authoritative status documents"
+      - "Bilingual claim review"
+
+  - discrepancy_id: "DISC-CLI-001"
+    category: "cli"
+    claim_id: "CLAIM-CLI-SUBCOMMANDS"
+    sources:
+      - type: "documentation"
+        path: "README.md"
+        locator: "Module Structure and Quick Start"
+        statement: "The CLI has 12 subcommands and runnable init, chat, and serve workflows."
+      - type: "source"
+        path: "oryxos-cli/src/main/java/io/oryxos/cli/OryxOsCli.java"
+        locator: "@Command subcommands"
+        statement: "Only CommandLine.HelpCommand is registered."
+    observed_fact: >-
+      Current source verifies top-level usage/help and version behavior, but does not verify the README init, chat,
+      serve, or 12-subcommand claims.
+    affected_routes:
+      - "/docs/getting-started/build-from-source"
+      - "/docs/interfaces/cli"
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A separate runtime/documentation feature must implement and verify the claimed commands or revise the
+      authoritative documentation. Feature 002 documents only verified CLI behavior and planned commands.
+    resolution_evidence:
+      - "Implemented Picocli subcommands or corrected documentation"
+      - "Automated CLI command verification"
+      - "Updated Quick Start"
+
+  - discrepancy_id: "DISC-API-001"
+    category: "api"
+    claim_id: "CLAIM-REST-ENDPOINTS"
+    sources:
+      - type: "documentation"
+        path: "README.md"
+        locator: "Module Structure and REST API table"
+        statement: "The web module exposes 10 runnable REST endpoints under /api/v1."
+      - type: "source"
+        path: "oryxos-web/src/main/java/io/oryxos/web"
+        locator: "Current Java source set"
+        statement: >-
+          The source set contains ApiResponse, GlobalExceptionHandler, and a WebModule marker/comment, but no
+          request-mapped Controller implementation.
+    observed_fact: >-
+      Current source verifies response-envelope and exception-handling infrastructure but not the claimed business
+      endpoints.
+    affected_routes:
+      - "/docs/interfaces/rest-api"
+      - "/docs/getting-started/build-from-source"
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A separate runtime/documentation feature must implement and verify the endpoints or correct authoritative
+      API documentation. Feature 002 must not publish runnable endpoint examples.
+    resolution_evidence:
+      - "Request-mapped controller source"
+      - "Automated API verification"
+      - "Updated authoritative API documentation"
+
+  - discrepancy_id: "DISC-CAPABILITY-001"
+    category: "capability"
+    claim_id: "CLAIM-RUNTIME-CAPABILITIES"
+    sources:
+      - type: "documentation"
+        path: "README.md"
+        locator: "Features, Five Core Capabilities, and Roadmap Phase 1"
+        statement: >-
+          Provider routing, ReAct, Memory, Tool/Sandbox, REST, MCP, multi-Agent, audit, and related workflows are
+          described as operational or current.
+      - type: "source"
+        path: "oryxos-* modules"
+        locator: "Current source tree"
+        statement: >-
+          Multiple modules are early interfaces, markers, configuration, or scaffolding and do not provide
+          reproducible evidence for the complete workflows described in README.
+    observed_fact: >-
+      Module existence and architectural intent can be documented, but runtime behavior must be assigned atomic
+      evidence-backed states instead of being grouped as operational.
+    affected_routes:
+      - "/"
+      - "/architecture"
+      - "/roadmap"
+      - "/docs/runtime/provider"
+      - "/docs/runtime/react-loop"
+      - "/docs/runtime/tool"
+      - "/docs/runtime/memory"
+      - "/docs/runtime/skill-profile"
+    affected_locales: "both"
+    severity: "blocker"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A follow-up feature must produce a verified capability inventory and reconcile authoritative documentation.
+      Feature 002 uses atomic statuses, evidence references, limitations, and target-design labels.
+    resolution_evidence:
+      - "Capability-specific implementation and test evidence"
+      - "Release-artifact verification"
+      - "Updated README, Roadmap, and technical documentation"
+
+  - discrepancy_id: "DISC-BUILD-001"
+    category: "build"
+    claim_id: "CLAIM-BUILD-FROM-SOURCE"
+    sources:
+      - type: "documentation"
+        path: "README.md"
+        locator: "Quick Start"
+        statement: "Build instructions use a globally installed Maven command and continue into unavailable CLI workflows."
+      - type: "governance"
+        path: ".specify/memory/constitution.md"
+        locator: "Independent build and deployment boundary"
+        statement: "Runtime verification uses the committed Maven Wrapper."
+    observed_fact: >-
+      The website may document the verified wrapper-based source build but must not repeat unverified post-build CLI
+      steps.
+    affected_routes:
+      - "/docs/getting-started/build-from-source"
+      - "/docs/interfaces/cli"
+    affected_locales: "both"
+    severity: "high"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A separate documentation feature must update the repository Quick Start after runtime command behavior is
+      implemented or redefined.
+    resolution_evidence:
+      - "Verified wrapper-based build instructions"
+      - "Verified executable-JAR behavior"
+      - "Updated README Quick Start"
+
+  - discrepancy_id: "DISC-ASSET-001"
+    category: "asset"
+    claim_id: null
+    sources:
+      - type: "documentation"
+        path: "README.md"
+        locator: "Logo and Architecture image references"
+        statement: "README references website/public/images/logo.svg and architecture.svg."
+      - type: "feature-plan"
+        path: "specs/002-oryxos-website/contracts/brand-assets.md"
+        locator: "Required assets"
+        statement: "The new website creates an original asset hierarchy under brand, icons, diagrams, and social."
+    observed_fact: >-
+      README's legacy image paths are outside the new asset contract and can remain broken because Feature 002 is
+      not allowed to edit authoritative documents or restore the retired website.
+    affected_routes: []
+    affected_locales: "both"
+    severity: "high"
+    validation_deploy_allowed: true
+    formal_publication_blocked: true
+    status: "triaged"
+    required_action: >-
+      A separate documentation feature must update README to approved new asset paths after original assets are
+      accepted. Feature 002 must not recreate assets by copying retired website material.
+    resolution_evidence:
+      - "Approved original brand assets"
+      - "Updated README image references"
+      - "Repository-rendering verification"
