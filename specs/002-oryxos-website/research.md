@@ -1,4 +1,4 @@
-# Research: New OryxOS Website
+# Research: OryxOS Website Visual Prototype
 
 **Feature**: `002-oryxos-website`
 
@@ -7,7 +7,8 @@
 ## Decision 1: Static-site framework and runtime boundary
 
 **Decision**: Use VitePress with Vue 3 and TypeScript under Node.js 24 LTS. Build-time Vue SSR/SSG produces
-static HTML, CSS, JavaScript, and assets for GitHub Pages. No Node process exists after deployment.
+static HTML, CSS, JavaScript, and assets that are locally previewed below the future GitHub Pages project base. No
+Node process or public deployment is part of the completed Feature.
 
 **Rationale**: The product surface combines a branded landing page with a substantial bilingual documentation
 tree. VitePress already provides Markdown rendering, build-time SSR, locale-aware navigation, documentation
@@ -25,7 +26,8 @@ sidebars, accessibility foundations, and static deployment while allowing focuse
 ## Decision 2: Extend the VitePress default theme
 
 **Decision**: Extend `DefaultTheme` with a thin custom Layout and focused components for the home page,
-capability states, evidence/limitations summaries, and the locale-aware not-found experience.
+capability-state legend, provisional documentation forms, limitations placeholders, and the locale-aware
+not-found experience.
 
 **Rationale**: Default-theme navigation, mobile menus, sidebars, outlines, skip links, and keyboard behavior are
 mature. Reusing them lowers accessibility and upgrade risk while still permitting an original visual identity.
@@ -53,50 +55,52 @@ prevents fragile string replacement and drives navigation, alternate links, vali
   switching.
 - **Two independent builds**: duplicates configuration and makes cross-locale consistency harder.
 
-## Decision 4: Content and capability governance
+## Decision 4: Prototype content model
 
-**Decision**: Keep localized prose in Markdown while central manifests hold page relationships, atomic capability
-states, claims, evidence, and approved external links. Capability states are restricted to `available`,
-`in-development`, `planned`, and `vision`.
+**Decision**: Keep provisional localized prose in Markdown while a small manifest holds page relationships,
+global prototype-label requirements, documentation section templates, and approved external links. Demonstrate
+Available, In development, Planned, and Vision as a visual legend rather than assigning those states to real
+capabilities.
 
-**Rationale**: The same capability appears on the home page, Architecture, Roadmap, and dedicated documentation.
-A central machine-readable state prevents contradictory labels while preserving natural localized writing.
+**Rationale**: The user needs to evaluate presentation before final copy exists. A visible draft notice and
+machine-checkable page template make provisional content safe without building a premature claim/evidence system.
 
-Every incomplete capability page uses these visible sections:
+Every provisional documentation page uses these visible sections:
 
-1. Publication state
-2. Verified current behavior
-3. Target design
-4. Known limitations
-5. What is not currently available
-6. Related evidence and concepts
+1. Draft visual prototype notice
+2. Overview placeholder
+3. Intended design placeholder
+4. Status placeholder
+5. Limitations placeholder
+6. Related navigation
 
 **Alternatives considered**:
 
-- **Frontmatter-only status**: easy to author but duplicates capability state across multiple pages.
-- **All content in JSON**: makes bilingual long-form editing and review unnecessarily difficult.
+- **Full Claim/Evidence registry in the prototype**: too heavy for visual exploration and better handled by the
+  later content-publication Feature.
+- **All content in JSON**: makes bilingual layout editing unnecessarily difficult.
 - **Build-time GitHub API or CMS**: breaks offline reproducibility and introduces external service dependencies.
 
 ## Decision 5: Documentation discrepancy handling
 
-**Decision**: Store a structured discrepancy register in the Feature artifacts. Website implementation may show
-only verified claims; it does not edit README or existing authoritative documents. Any conflict that would create
-contradictory public facts blocks formal publication until a separate feature resolves it.
+**Decision**: Keep a structured discrepancy register in the Feature artifacts, use neutral or visibly provisional
+copy in the prototype, and prohibit public deployment. A later Feature owns final copy verification,
+authoritative-document reconciliation, and publication.
 
 **Rationale**: The source tree currently verifies fewer runtime capabilities than existing public prose claims.
-The Feature explicitly excludes modifying those documents, so the discrepancy register is the traceable handoff
-mechanism required by Constitution v1.1.0.
+The prototype should not solve that content program while the user is evaluating visual form, but it must also not
+publish contradictory text. Local-only draft labeling provides a safe handoff boundary.
 
 **Alternatives considered**:
 
 - **Copy README claims into the website**: violates content truthfulness.
-- **Silently use website wording and ignore repository conflicts**: violates the documentation consistency gate.
-- **Expand Feature 002 to rewrite all documents**: rejected by clarification; it would obscure the website scope.
+- **Publicly deploy draft copy with `noindex`**: rejected because noindex is not access control.
+- **Expand Feature 002 to rewrite all documents**: rejected because the current goal is visual prototyping.
 
 ## Decision 6: Brand asset strategy
 
 **Decision**: Create original SVG source assets for the logo mark, English wordmark, horizontal lockup, and
-architecture diagrams. Export required raster variants for browser icons and localized 1200×630 social images.
+architecture diagrams. Reproducibly export required raster variants with a locked local SVG renderer.
 
 **Rationale**: SVG is appropriate for scalable marks and diagrams, while PNG remains the reliable format for
 Open Graph cards and touch icons. A limited foundational set gives the new site a consistent identity without
@@ -130,11 +134,11 @@ reduce CSS conflicts, and narrow the accessibility and security review.
 
 1. VitePress production build with dead-link checking enabled.
 2. Node.js standard-library content and build validators, tested with `node:test`.
-3. Playwright against `vitepress preview`, with Chromium on pull requests and a full browser matrix for manual
-   release validation.
-4. `@axe-core/playwright` plus manual bilingual, zoom, focus-quality, contrast, external-link, and claim review.
+3. A locked Playwright Chromium project in CI and local review against `vitepress preview` after an explicit
+   production build. Firefox is not part of this visual-prototype approval matrix.
+4. `@axe-core/playwright` plus manual bilingual, zoom, focus-quality, contrast, and visual-form review.
 
-**Rationale**: This validates the deployable static output rather than a development server. Node scripts are
+**Rationale**: This validates the production-build output rather than a development server. Node scripts are
 enough for deterministic manifests, while Playwright covers project-base routing, deep links, browser behavior,
 metadata, responsive behavior, and keyboard workflows.
 
@@ -148,23 +152,24 @@ metadata, responsive behavior, and keyboard workflows.
 
 ## Decision 9: Automated versus manual checks
 
-**Decision**: Automate reproducible structural facts and keep semantic judgments in release review.
+**Decision**: Automate reproducible structural facts and keep semantic and visual judgments in local prototype
+review.
 
 **Automated blocking checks**:
 
 - reproducible install, type checking, content validators, and static build;
-- route/page parity and allowed capability states;
+- route/page parity, draft notices, required page forms, and the four-item visual legend;
 - expected output files, 404, brand assets, and `/oryxos/` base handling;
 - title, description, Open Graph metadata, language attributes, and image alt attributes;
 - internal navigation, locale switching, keyboard activation, axe findings, browser errors, failed site requests;
 - representative viewport/breakpoint overflow checks.
 
-**Manual release checks**:
+**Manual prototype checks**:
 
 - actual English/Chinese semantic equivalence;
-- claim accuracy and discrepancy review;
+- conservative provisional wording and discrepancy review;
 - meaningful alternative text and diagram comprehension;
-- visual focus clarity and real browser 200% zoom in Chrome and Firefox;
+- visual focus clarity and real browser 200% zoom in the locked Playwright Chromium browser;
 - interactive-state contrast and final responsive composition;
 - external GitHub/community links and brand originality.
 
@@ -173,32 +178,28 @@ reliably certified by deterministic scripts alone.
 
 ## Decision 10: CI and GitHub Pages deployment
 
-**Decision**: Add a path-filtered website validation workflow that never deploys. Convert the existing Pages
-workflow to `workflow_dispatch` only, use Node.js 24 from the repository version file, validate and build before
-upload, and require approval through the protected `github-pages` Environment.
+**Decision**: Add a path-filtered website validation workflow that never deploys. Remove the existing Pages
+workflow and replace it with a manually triggered, read-only prototype artifact workflow with no Pages
+permissions, `actions/upload-pages-artifact`, or `actions/deploy-pages`. Use Node.js 24 from the repository version
+file and upload only a regular CI artifact when manual inspection is needed.
 
-Manual deployment records must identify the source commit, release-review record, discrepancy snapshot, and
-explicit acknowledgement that the validation URL may be public. Validation deployments use `noindex` and a
-disallowing `robots.txt`.
-
-**Rationale**: Automatic validation gives rapid feedback; manual protected deployment enforces the clarified
-publication boundary. `noindex` reduces accidental discovery but is not treated as access control.
+**Rationale**: Automatic validation gives rapid feedback without creating a public website. Public deployment and
+repository Environment configuration belong to the later publication Feature.
 
 **Alternatives considered**:
 
 - **Deploy on every main push**: explicitly rejected by the Feature.
-- **No Pages deployment at all**: prevents validating the real project base and deep-link behavior.
-- **Rely only on `workflow_dispatch` without Environment approval**: manual start is not equivalent to release
-  authorization.
+- **Manual public validation deployment**: rejected because the prototype contains provisional content.
+- **Local preview only without CI**: possible, but a non-deploying CI build catches reproducibility regressions.
 
 ## Decision 11: SEO and social metadata
 
-**Decision**: Generate localized title, description, canonical URL, `hreflang`, Open Graph, and Twitter metadata
-from frontmatter plus shared configuration. Use absolute social URLs under the confirmed Pages origin. During the
-validation phase, emit `noindex,nofollow,noarchive` and a fully disallowing `robots.txt`.
+**Decision**: Generate localized title, description, language tags, and basic relative Open Graph/Twitter image
+metadata from frontmatter plus shared configuration. Defer public canonical URLs, sitemap hostname, and searchable
+indexing configuration until a deployment origin is approved.
 
-**Rationale**: Central generation avoids metadata drift and supports equivalent locale URLs. Validation content
-must not be intentionally indexed before formal publication blockers are resolved.
+**Rationale**: Central generation avoids metadata drift while preventing placeholder production origins from
+entering a local-only prototype.
 
 **Alternatives considered**:
 
@@ -208,10 +209,10 @@ must not be intentionally indexed before formal publication blockers are resolve
 
 ## Decision 12: Search
 
-**Decision**: Do not include search in the first release. Reassess VitePress local search after content and
+**Decision**: Do not include search in the visual prototype. Reassess VitePress local search after content and
 Chinese tokenization needs are observed.
 
-**Rationale**: The first-release navigation and documentation scope are manageable without search, and omitting it
+**Rationale**: The prototype navigation and documentation scope are manageable without search, and omitting it
 avoids external services, credentials, indexing drift, and additional client assets.
 
 **Alternatives considered**:

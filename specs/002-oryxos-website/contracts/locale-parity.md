@@ -14,12 +14,12 @@ Counterpart pages must have identical values for:
 - `pageId`
 - page kind and topic group
 - required/optional status
-- Capability IDs and capability states
-- Claim IDs and evidence baseline
-- roadmap stage keys and order
-- primary action keys and destinations
+- prototype page template and content status
+- capability-legend state keys and order
+- roadmap visual-stage keys and order
+- primary action keys and target Page IDs
 - required section keys
-- warnings, limitations, and unavailable-feature declarations
+- draft-notice keys and placeholder-limitation section presence
 
 These fields are machine-checked and do not depend on translated prose comparison.
 
@@ -29,19 +29,19 @@ Counterpart pages may differ in:
 
 - title, description, headings, paragraphs, and examples of natural language;
 - navigation labels;
+- localized capability-legend labels, draft notices, and placeholder-limitation prose;
 - alternative text and visible captions;
 - social-sharing image and social locale;
 - locale-specific external learning resources, provided the destination purpose remains equivalent.
 
 Commands, configuration keys, Java symbols, route paths, versions, and API identifiers are not translated.
 
-## Translation review states
+## Prototype content states
 
-| State | Meaning | Validation deployment | Formal publication |
+| State | Meaning | Prototype completion | Public publication |
 |---|---|---|---|
-| `draft` | Translation is incomplete | Blocked for required pages | Blocked |
-| `review-required` | Complete draft awaiting bilingual review | Allowed only if release review explicitly accepts it for validation | Blocked |
-| `reviewed` | Semantic review passed | Allowed | Eligible if other blockers are closed |
+| `prototype` | Page form and provisional copy are available for visual review | Allowed when the draft notice and required sections are present | Blocked |
+| `reviewed` | Page copy has passed later content verification | Outside this Feature | Eligible only in a later publication Feature |
 
 ## Language switching
 
@@ -59,20 +59,27 @@ Commands, configuration keys, Java symbols, route paths, versions, and API ident
 - Shared semantic fields match.
 - No English internal navigation unexpectedly enters `/zh/`, and vice versa.
 - Titles and descriptions are non-empty and unique within each locale.
-- `<html lang>`, canonical, `hreflang`, and `og:locale` match the active locale.
+- `<html lang>`, relative language-counterpart metadata, and `og:locale` match the active locale without requiring
+  a placeholder public origin; the site-level bilingual `404.html` follows its explicit recovery-artifact
+  exception.
 - Locale switching reaches the expected counterpart under the `/oryxos/` base.
+- The hidden English-only fallback fixture switches to `/zh/translation-unavailable`, proving the
+  missing-counterpart branch without weakening required-page parity.
 
 ## Manual semantic review
 
 Reviewers must verify that:
 
 - Pre-alpha and single-node status are equally prominent.
-- Available, In development, Planned, and Vision are not translated into stronger or weaker commitments.
-- Distributed Agent collaboration remains explicitly a Vision.
-- Known limitations and unavailable behavior are present in both languages.
+- The Available, In development, Planned, and Vision legend labels are not translated into stronger or weaker
+  commitments.
+- Distributed Agent collaboration remains a prose-only long-term direction and is not given a real
+  capability-state badge in either locale.
+- Draft notices and placeholder limitations are present in both languages.
 - Primary calls to action perform the same action.
 - ASF references remain a future aspiration in both languages.
-- `Skill + Profile = Agent` and the Profile configuration-entry caveat have equivalent meaning.
+- Both languages state that one YAML Profile completely defines an Agent and may declare or reference a Skill
+  loaded as behavioral prompt context.
 
 ## Fallback page content
 

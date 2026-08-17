@@ -1,9 +1,9 @@
 # Route Map Contract
 
-## Public base
+## Simulated project base
 
-- Deployment origin: `https://oryx-labs.github.io`
 - VitePress base: `/oryxos/`
+- Validation origin: local `vitepress preview`; no public origin is approved in this Feature.
 - English is the root locale.
 - Simplified Chinese uses `/zh/`.
 - Internal Markdown and theme routes omit `/oryxos/`; VitePress or `withBase()` applies it.
@@ -12,6 +12,8 @@
 ## Required routes
 
 Every required Page ID has exactly one English and one Chinese source page.
+All required source pages are created as buildable skeletons before story-specific content work begins so
+dead-link checking and production preview remain usable throughout implementation.
 
 | Page ID | Kind | English route | Chinese route | Source pattern |
 |---|---|---|---|---|
@@ -39,7 +41,8 @@ Every required Page ID has exactly one English and one Chinese source page.
 | Page ID | English route | Chinese route | Rule |
 |---|---|---|---|
 | `translation-unavailable` | `/translation-unavailable` | `/zh/translation-unavailable` | Only for future non-required pages; required routes may not use fallback to pass build |
-| `not-found` | `/404.html` | Shared root output | The rendered page detects the retained request path and prioritizes the matching locale without hiding the other recovery option |
+| `locale-fallback-fixture` | `/test-fixtures/locale-fallback` | None | Hidden optional English-only test Page; locale switching must resolve to `/zh/translation-unavailable` and it must never appear in navigation |
+| `not-found` | `/404.html` | Shared root output | Site-level bilingual artifact with `lang="en"`, bilingual metadata, SSR-rendered recovery groups for both locales, and optional retained-path prioritization |
 
 ## Primary navigation contract
 
@@ -65,7 +68,8 @@ Documentation navigation is grouped identically in both locales:
 5. Interfaces
 6. Contributing
 
-Labels are localized; Page IDs, grouping, ordering, claim references, and route relationships remain equivalent.
+Labels are localized; Page IDs, grouping, ordering, prototype templates, content statuses, and route relationships
+remain equivalent.
 
 ## Build validation
 
@@ -76,5 +80,7 @@ The content validator and Playwright suite must prove:
 - all internal navigation stays under `/oryxos/` in built output;
 - deep English and Chinese routes load directly;
 - every required page switches to its counterpart;
-- `404.html` exists and offers valid locale-aware recovery links;
+- the hidden optional fallback fixture switches to the Chinese translation-unavailable Page;
+- `404.html` exists, follows the site-level metadata exception, and offers valid SSR-rendered recovery links for
+  both locales;
 - VitePress dead-link checking remains enabled.

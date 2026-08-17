@@ -1,371 +1,238 @@
-# Tasks: New OryxOS Website
+# Tasks: OryxOS Website Visual Prototype
 
 **Input**: Design documents from `/specs/002-oryxos-website/`
 
 **Prerequisites**: `plan.md`, `spec.md`, `research.md`, `data-model.md`, `contracts/`, `quickstart.md`, and
 `discrepancy-register.yaml`
 
-**Tests**: Automated tests are included because the specification and Constitution require link, route, locale,
-keyboard, accessibility, responsive, metadata, asset, content-truthfulness, and deployment-policy validation.
-Story-specific tests must be written first and observed failing before their implementation tasks begin.
+**Tests**: Focused automated tests are required for routes, bilingual navigation, draft labeling, project-base
+behavior, keyboard use, accessibility, responsive overflow, asset generation, and non-deployment policy. Each
+story's focused tests are written and observed failing before that story's implementation begins. A failing test
+may be fixed in any implementation file owned by the story; tests must not be weakened merely to obtain a pass.
 
-**Organization**: Tasks are grouped by user story so each story can be implemented and validated as an explicit
-increment. The retired `.website.bak` directory remains excluded from every task and must not be read, searched,
-copied, or adapted.
+**Prototype boundary**: The goal is to evaluate page presentation and interaction. Provisional copy is allowed
+when visibly labeled and conservative. This Feature must not read `.website.bak`, run Runtime Maven verification,
+or deploy to GitHub Pages or another public address.
 
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel after its phase prerequisites because it changes different files.
 - **[Story]**: Maps the task to a user story from `spec.md`.
-- Every task includes the exact target path.
+- Every task includes exact target paths.
 
-## Phase 1: Setup (Shared Infrastructure)
+## Phase 1: Setup
 
-**Purpose**: Establish a clean, reproducible VitePress project without restoring or referencing the retired site.
+**Purpose**: Establish a clean, reproducible VitePress project without restoring or inspecting retired content.
 
-- [ ] T001 Create the from-scratch directory structure under `website/`, including `.vitepress/config/`, `.vitepress/theme/components/`, `.vitepress/theme/lib/`, `.vitepress/theme/styles/`, `data/`, `docs/`, `zh/`, `public/brand/`, `public/icons/`, `public/diagrams/`, `public/social/`, `scripts/`, `tests/scripts/`, and `tests/e2e/`, without reading or importing `.website.bak`
-- [ ] T002 Resolve and pin the exact current Node.js 24 LTS release in `website/.nvmrc`, enable strict engine enforcement in `website/.npmrc`, and document the matching Node range and npm package manager in `website/package.json`
-- [ ] T003 Initialize the independent npm project with exact compatible VitePress, Vue 3, TypeScript, `vue-tsc`, Playwright, and `@axe-core/playwright` dependencies in `website/package.json` and generate `website/package-lock.json` using Node.js 24
-- [ ] T004 [P] Configure strict TypeScript and Vue declarations in `website/tsconfig.json` and `website/env.d.ts`
-- [ ] T005 [P] Create the auto-discovered VitePress entry and delegated configuration with `base: '/oryxos/'`, clean URLs, light-only appearance, and dead-link checking enabled in `website/.vitepress/config.mts` and `website/.vitepress/config/index.ts`
-- [ ] T006 [P] Configure Playwright to test `vitepress preview` below `/oryxos/`, use Chromium for CI, and expose a release browser matrix in `website/playwright.config.ts`
-- [ ] T007 Update repository ignore rules for `website/node_modules/`, `website/.vitepress/cache/`, `website/.vitepress/dist/`, Playwright reports, and test artifacts in `.gitignore` without reverting unrelated existing entries
+- [x] T001 Create the complete from-scratch source tree under `website/`, including every nested English and Chinese documentation directory, `.vitepress/config/`, `.vitepress/theme/components/`, `.vitepress/theme/styles/`, `test-fixtures/`, `data/`, `public/brand/`, `public/icons/`, `public/diagrams/`, `public/social/`, `scripts/`, `tests/scripts/`, and `tests/e2e/`, without reading or importing `.website.bak`
+- [x] T002 Resolve and pin the exact current Node.js 24 LTS release in `website/.nvmrc`, enable strict engine enforcement in `website/.npmrc`, and declare the matching Node range plus npm package manager in `website/package.json`
+- [x] T003 Initialize `website/package.json` and generate `website/package-lock.json` with exact compatible VitePress, Vue 3, TypeScript, `@types/node`, `vue-tsc`, `@playwright/test`, `@axe-core/playwright`, `yaml`, and `@resvg/resvg-js` dependencies using Node.js 24
+- [x] T004 [P] Configure strict TypeScript and Vue declarations in `website/tsconfig.json` and `website/env.d.ts`
+- [x] T005 [P] Create the VitePress entry and delegated configuration with `base: '/oryxos/'`, clean URLs, light-only appearance, and dead-link checking enabled in `website/.vitepress/config.mts` and `website/.vitepress/config/index.ts`
+- [x] T006 [P] Configure the locked Playwright Chromium project for CI and local review, running an explicit production build before `vitepress preview` below `/oryxos/`, in `website/playwright.config.ts`
+- [x] T007 Update `.gitignore` for website build/test artifacts, remove `.github/workflows/deploy-pages.yml`, and create safe read-only skeletons for `.github/workflows/website-ci.yml` plus `.github/workflows/website-prototype-artifact.yml` that already use `node-version-file: website/.nvmrc`, only `contents: read`, and no deployment actions without reverting unrelated entries
 
-**Checkpoint**: Node and npm metadata are reproducible, the new source tree exists, and no retired website input has been used.
-
----
-
-## Phase 2: Foundational (Blocking Prerequisites)
-
-**Purpose**: Implement the route, claim, metadata, theme, and validation infrastructure required by every story.
-
-**CRITICAL**: No user story implementation begins until this phase is complete. Fixture tests may pass here, but
-the full live-site content validator is expected to remain red until all required story pages exist.
-
-- [ ] T008 [P] Write failing Node tests for route uniqueness, locale pairing, capability-state enums, shared Claim IDs, evidence requirements, incomplete-page sections, and blocked publication claims in `website/tests/scripts/check-content.test.mjs`
-- [ ] T009 [P] Write failing Node tests for expected HTML outputs, `/oryxos/` asset paths, `404.html`, metadata, required assets, and prohibited runtime/tracking URLs in `website/tests/scripts/verify-build.test.mjs`
-- [ ] T010 [P] Define all 18 required English/Chinese Page ID pairs plus fallback and not-found records in `website/data/pages.json` according to `contracts/route-map.md`
-- [ ] T011 [P] Define atomic capability states, public Claims, supporting/contradicting Evidence, limitations, affected pages, and publication decisions in `website/data/capabilities.json`, `website/data/claims.json`, and `website/data/evidence.json`
-- [ ] T012 [P] Create the approved repository, license, issue, organization, governance, and contribution destination registry in `website/data/external-links.json`, excluding unverified destinations
-- [ ] T013 Implement manifest and Markdown validation for the T008 cases in `website/scripts/check-content.mjs`, with deterministic errors that name the invalid Page, Capability, Claim, Evidence, or discrepancy reference
-- [ ] T014 Implement generated-output validation for the T009 cases in `website/scripts/verify-build.mjs`, using only Node.js standard-library APIs
-- [ ] T015 Configure shared site identity, root and `zh` locales, localized labels, navigation data sources, sidebars, footer behavior, and `/oryxos/` URL helpers in `website/.vitepress/config/shared.ts`, `website/.vitepress/config/locales.ts`, and `website/.vitepress/config/navigation.ts`
-- [ ] T016 Implement localized canonical, `hreflang`, Open Graph, Twitter, robots, and structured-metadata generation from Page records and frontmatter in `website/.vitepress/config/metadata.ts`
-- [ ] T017 Extend the VitePress default theme with an SSR-safe thin layout wrapper in `website/.vitepress/theme/index.ts` and `website/.vitepress/theme/Layout.vue`
-- [ ] T018 [P] Implement evidence-backed status presentation primitives in `website/.vitepress/theme/components/CapabilityStatus.vue`, `website/.vitepress/theme/components/EvidenceSummary.vue`, and `website/.vitepress/theme/components/KnownLimitations.vue`
-- [ ] T019 [P] Define light enterprise design tokens, base typography, visible focus treatment, reduced-motion behavior, and default-theme overrides in `website/.vitepress/theme/styles/tokens.css`, `website/.vitepress/theme/styles/base.css`, and `website/.vitepress/theme/styles/default-theme.css`
-- [ ] T020 [P] Create reusable Page manifest loading, preview error capture, axe setup, and viewport data helpers in `website/tests/e2e/site-fixtures.ts` and `website/tests/e2e/accessibility.ts`
-- [ ] T021 Add `docs:dev`, `docs:typecheck`, `docs:build`, `docs:preview`, `test:scripts`, `check:content`, `verify:build`, `test:e2e:ci`, `test:e2e:release`, and `test:quality` commands in `website/package.json`
-
-**Checkpoint**: The shared static-site foundation is ready; User Stories 1 and 2 can begin in parallel.
+**Checkpoint**: Node/npm metadata and the complete empty source tree are reproducible.
 
 ---
 
-## Phase 3: User Story 1 - Understand OryxOS and Its Current Status (Priority: P1) MVP
+## Phase 2: Foundational Prototype Infrastructure
 
-**Goal**: Deliver an English home page that lets a first-time visitor identify OryxOS as a Java-oriented,
-self-hosted Agent OS foundation in pre-alpha, understand Agent OS versus Agent Runtime/framework, and distinguish
-the single-node current focus from the distributed Vision.
+**Purpose**: Make the full route skeleton buildable before navigation or story work, then establish shared theme,
+content, asset, and test infrastructure.
 
-**Independent Test**: Open only the English home page under `/oryxos/`, including once with JavaScript disabled.
-A reviewer can identify the product category, audience, maturity, current focus, and long-term direction; all
-displayed capability labels match the registered evidence-backed state.
+**CRITICAL**: No story implementation begins until the complete route skeleton passes the production build.
+
+- [x] T008 [P] Write failing Node tests for route uniqueness, all 18 English/Chinese Page pairs, counterpart templates, every page's draft-notice requirement, documentation section requirements, prohibited runnable interfaces, and any real-capability state assignment in `website/tests/scripts/check-content.test.mjs`
+- [x] T009 [P] Write fixture-based failing Node tests for generated-output validation: global localized draft notices, a bilingual prototype notice in `404.html`, unique per-locale titles and descriptions, correct `lang` and `og:locale`, relative counterpart metadata, localized Open Graph/Twitter image-alt metadata, `/oryxos/` asset paths, the bilingual 404 exception, favicon/touch/social assets, and missing internal targets in `website/tests/scripts/verify-build.test.mjs`
+- [x] T010 [P] Write failing Node tests that scan all YAML files under `.github/workflows/`, reject Pages write permissions/actions/Environments and public-deployment jobs, reject `id-token: write` in both website workflows, and require both website workflows to use `node-version-file: website/.nvmrc` in `website/tests/scripts/workflow-policy.test.mjs`
+- [x] T011 [P] Define all required English/Chinese Page records, fallback records, the hidden optional English-only locale-fallback fixture, the bilingual site-level 404 recovery artifact, templates, content statuses, counterpart relationships, and CTA-purpose keys in `website/data/pages.json`
+- [x] T012 [P] Define localized draft notices, provisional section keys, four non-claim capability-legend items, roadmap visual stages, and approved external destinations in `website/data/prototype-content.json` and `website/data/external-links.json`
+- [x] T013 Create buildable Markdown skeletons for all 36 required localized routes, both translation fallbacks, the hidden English-only `website/test-fixtures/locale-fallback.md` Page, and the bilingual site-level not-found source at the exact paths in `contracts/route-map.md`; every locale-owned skeleton must declare prototype content status and every documentation skeleton must include the required section headings
+- [x] T014 Implement manifest, Markdown, YAML discrepancy, prohibited-content, and workflow-policy validation for T008 and T010 using the `yaml` package in `website/scripts/check-content.mjs` and `website/scripts/check-workflows.mjs`
+- [x] T015 [P] Write fixture-based asset-export tests and implement deterministic SVG-to-PNG export, dimension/file-signature checks, and complete required-inventory/manifest-schema validation for asset ID, kind, source, outputs, locale, dimensions, alt key, and ownership with `@resvg/resvg-js` in `website/tests/scripts/export-assets.test.mjs`, `website/scripts/export-assets.mjs`, and `website/scripts/verify-assets.mjs`
+- [x] T016 Implement generated-output validation for T009, including an internal route/fragment graph check over built HTML, in `website/scripts/verify-build.mjs`
+- [x] T017 Configure shared identity, complete root/`zh` locales, localized labels, full primary navigation, full sidebars, footer behavior, and `/oryxos/` helpers against the existing skeleton routes in `website/.vitepress/config/shared.ts`, `website/.vitepress/config/locales.ts`, and `website/.vitepress/config/navigation.ts`
+- [x] T018 [P] Implement localized title, description, language, counterpart, Open Graph, Twitter, favicon, and Apple Touch metadata without a placeholder public canonical origin in `website/.vitepress/config/metadata.ts`
+- [x] T019 Extend the default VitePress theme with an SSR-safe wrapper, create empty imported story style entrypoints, and explicitly import `tokens.css`, `base.css`, `default-theme.css`, `responsive.css`, `home.css`, `architecture-roadmap.css`, `locale.css`, `documentation.css`, `community.css`, and `not-found.css` from `website/.vitepress/theme/index.ts`
+- [x] T020 Implement the localized draft notice, provisional page shell, capability-state legend, related-navigation, and limitation-placeholder components in `website/.vitepress/theme/components/DraftNotice.vue`, `website/.vitepress/theme/components/PrototypeDocShell.vue`, `website/.vitepress/theme/components/CapabilityLegend.vue`, `website/.vitepress/theme/components/RelatedNavigation.vue`, and `website/.vitepress/theme/components/LimitationsPlaceholder.vue`, then mount the SSR-rendered DraftNotice for every locale-owned page in `website/.vitepress/theme/Layout.vue`
+- [x] T021 [P] Define light enterprise tokens, typography, visible focus, reduced motion, base layout, default-theme overrides, and baseline overflow protection in `website/.vitepress/theme/styles/tokens.css`, `website/.vitepress/theme/styles/base.css`, `website/.vitepress/theme/styles/default-theme.css`, and `website/.vitepress/theme/styles/responsive.css`
+- [x] T022 [P] Create page-manifest loading, preview-error capture, axe configuration, keyboard helpers, and the 320/375/390/768/1024/1280/1440 viewport matrix in `website/tests/e2e/site-fixtures.ts`, `website/tests/e2e/accessibility.ts`, and `website/tests/e2e/viewports.ts`
+- [x] T023 Add `docs:dev`, `docs:typecheck`, `docs:build`, `docs:preview`, `assets:build`, `assets:verify`, `test:scripts`, `test:workflow-policy`, `check:content`, `verify:build`, `test:e2e:ci`, `test:e2e:release`, and `test:quality` commands with build-before-preview ordering in `website/package.json`
+- [x] T024 Run script unit tests, workflow-policy tests, type checking, and `docs:build`; fix any foundational regression in the files owned by T011-T023 without disabling dead-link or policy checks, while deferring required production-asset verification until all localized sources exist
+
+**Checkpoint**: Every required route exists, shared navigation is valid, and the complete skeleton builds below
+`/oryxos/` before story-specific content work begins.
+
+---
+
+## Phase 3: User Story 1 - Home Presentation (Priority: P1) MVP
+
+**Goal**: Present a distinctive English home page that communicates Java, self-hosting, pre-alpha maturity,
+single-node focus, a non-claim state legend, and distributed collaboration as a prose-only long-term direction.
 
 ### Tests for User Story 1
 
-- [ ] T022 [P] [US1] Write failing Playwright assertions for the pre-alpha statement, Java/self-hosted positioning, Agent OS comparison, single-node focus, four exact state labels, distributed Vision wording, primary calls to action, and keyboard reachability in `website/tests/e2e/home.spec.ts`
-- [ ] T023 [P] [US1] Write a failing no-JavaScript test proving that home-page positioning, status, and ordinary links remain in the pre-rendered HTML in `website/tests/e2e/static-content.spec.ts`
+- [x] T025 [P] [US1] Write failing Playwright assertions for the global draft notice, five positioning cues, Agent OS comparison, four-state non-claim visual legend, distributed long-term-direction wording without a real state badge, primary CTAs, and keyboard reachability in `website/tests/e2e/home.spec.ts`
+- [x] T026 [P] [US1] Write a failing no-JavaScript test proving the home positioning and ordinary links are present in pre-rendered HTML in `website/tests/e2e/static-content.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T024 [P] [US1] Create the original logo mark, English wordmark, horizontal lockup, monochrome mark, and SVG favicon in `website/public/brand/logo-mark.svg`, `website/public/brand/wordmark-en.svg`, `website/public/brand/lockup-horizontal.svg`, `website/public/brand/logo-mark-monochrome.svg`, and `website/public/icons/favicon.svg`
-- [ ] T025 [P] [US1] Create the editable English social-card source and final 1200x630 PNG with visible Pre-alpha positioning in `website/public/social/og-default-en.svg` and `website/public/social/og-default-en.png`
-- [ ] T026 [P] [US1] Implement the SSR-rendered landing-page composition, value proposition, Agent OS comparison, capability snapshot, vision boundary, and CTA layout in `website/.vitepress/theme/components/HomeLanding.vue`
-- [ ] T027 [P] [US1] Author the evidence-backed English home content and localized metadata in `website/index.md`
-- [ ] T028 [P] [US1] Implement the responsive visual treatment for the hero, comparison, capability, architecture-preview, and CTA sections in `website/.vitepress/theme/styles/home.css`
-- [ ] T029 [US1] Integrate `HomeLanding.vue`, English brand assets, home styles, and Page/Claim data through `website/.vitepress/theme/Layout.vue` and `website/.vitepress/theme/index.ts`
-- [ ] T030 [US1] Run `home.spec.ts` and `static-content.spec.ts` against the production preview and fix only User Story 1 regressions in `website/tests/e2e/home.spec.ts` and `website/tests/e2e/static-content.spec.ts`
+- [x] T027 [P] [US1] Create original SVG sources for the logo mark, English wordmark, horizontal lockup, monochrome mark, favicon, Apple Touch icon, and English social card in `website/public/brand/*.svg`, `website/public/icons/*.svg`, and `website/public/social/og-default-en.svg`
+- [x] T028 [P] [US1] Implement the SSR-rendered hero, positioning, Agent OS comparison, non-claim capability-state legend, architecture preview, long-term-direction boundary, and CTA composition in `website/.vitepress/theme/components/HomeLanding.vue`
+- [x] T029 [P] [US1] Replace the English home skeleton with conservative prototype copy and localized metadata in `website/index.md`
+- [x] T030 [P] [US1] Implement responsive home presentation, decorative geometry, card hierarchy, and CTA states in the already imported `website/.vitepress/theme/styles/home.css`
+- [x] T031 [US1] Integrate `HomeLanding.vue`, manifest data, and brand assets through the existing frontmatter-aware logic in `website/.vitepress/theme/Layout.vue` without changing the global DraftNotice behavior
+- [x] T032 [US1] Run a production build, start preview, execute `home.spec.ts` and `static-content.spec.ts`, and fix User Story 1 implementation files until the focused tests pass without weakening assertions
 
-**Checkpoint**: The English home page is a locally testable MVP. It is not yet eligible for Pages deployment
-because the full bilingual route set, documentation, and release checks are incomplete.
+**Checkpoint**: The English home page is a locally reviewable visual MVP.
 
 ---
 
-## Phase 4: User Story 2 - Evaluate Architecture and Roadmap (Priority: P2)
+## Phase 4: User Story 2 - Architecture and Roadmap Presentation (Priority: P2)
 
-**Goal**: Let technical visitors inspect the canonical Agent model, module boundaries, evidence-backed capability
-states, known limitations, phased roadmap, and validation-only deployment policy.
-
-**Independent Test**: Open Architecture and Roadmap directly, navigate between them, and confirm that the pages
-explain Skill + Profile, Runtime concepts, Java modules, four delivery states, current foundations, active kernel
-work, enterprise-hardening goals, distributed Vision, and publication blockers without presenting unfinished
-behavior as operational. Workflow-policy tests prove no main push can deploy Pages.
+**Goal**: Present a Constitution-aligned Agent/Profile/Skill relationship, provisional module architecture,
+state legend, limitations, and staged roadmap as coherent visual forms.
 
 ### Tests for User Story 2
 
-- [ ] T031 [P] [US2] Write failing Playwright tests for the Architecture model, module boundaries, capability states, Roadmap stages, known limitations, and navigation reachability in `website/tests/e2e/architecture-roadmap.spec.ts`
-- [ ] T032 [P] [US2] Write failing Node tests that reject a Pages push trigger, Node versions other than the repository-pinned Node 24 release, missing manual inputs, missing exact-ref checkout, or missing protected Environment use in `website/tests/scripts/workflow-policy.test.mjs`
+- [x] T033 [P] [US2] Write failing Playwright tests for Profile-defined Agent wording, Skill prompt-context wording, module boundaries, capability legend, roadmap stages, known limitations, and two-action navigation reachability in `website/tests/e2e/architecture-roadmap.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T033 [P] [US2] Create original accessible system-architecture and Skill/Profile Agent-definition diagrams in `website/public/diagrams/system-architecture.svg` and `website/public/diagrams/agent-skill-profile.svg`
-- [ ] T034 [P] [US2] Implement a data-driven capability matrix that renders state text, non-color indicators, limitations, and evidence links in `website/.vitepress/theme/components/CapabilityMatrix.vue`
-- [ ] T035 [P] [US2] Implement a data-driven staged-roadmap component that does not imply unapproved dates or commitments in `website/.vitepress/theme/components/RoadmapTimeline.vue`
-- [ ] T036 [P] [US2] Author the English Architecture page with Skill + Profile, Profile-entry-point caveat, Runtime concepts, Java module boundaries, current evidence, target design, and known limitations in `website/architecture.md`
-- [ ] T037 [P] [US2] Author the English Roadmap page with current foundations, active Runtime Kernel work, enterprise hardening, distributed Vision, and explicit limitations in `website/roadmap.md`
-- [ ] T038 [P] [US2] Add responsive architecture, diagram, capability-matrix, and roadmap styling in `website/.vitepress/theme/styles/architecture-roadmap.css`
-- [ ] T039 [US2] Add Architecture and Roadmap to the English primary navigation and wire their components/styles through `website/.vitepress/config/navigation.ts` and `website/.vitepress/theme/index.ts`
-- [ ] T040 [P] [US2] Create the immutable-ref, discrepancy-snapshot, claim-accuracy, accessibility, public-access, and reviewer checklist template in `.github/WEBSITE_VALIDATION_REVIEW.md`
-- [ ] T041 [P] [US2] Add a path-filtered, read-only website validation workflow that runs Node 24, `npm ci`, script tests, content checks, type checks, build, build verification, Chromium, and axe without Pages permissions in `.github/workflows/website-ci.yml`
-- [ ] T042 [US2] Replace automatic Pages publication with a `workflow_dispatch`-only exact-ref validation workflow, required review inputs, Node 24 version-file use, quality gates, protected `github-pages` Environment, and artifact deployment in `.github/workflows/deploy-pages.yml`
-- [ ] T043 [US2] Run `architecture-roadmap.spec.ts` and `workflow-policy.test.mjs`, confirm zero push deployment path remains, and fix User Story 2 regressions in `website/tests/e2e/architecture-roadmap.spec.ts` and `website/tests/scripts/workflow-policy.test.mjs`
+- [x] T034 [P] [US2] Create original accessible system-architecture, Profile/Skill relationship, and ReAct target-design diagrams in `website/public/diagrams/system-architecture.svg`, `website/public/diagrams/agent-skill-profile.svg`, and `website/public/diagrams/react-loop.svg`
+- [x] T035 [P] [US2] Implement a data-driven architecture/module presentation in `website/.vitepress/theme/components/ArchitectureMap.vue`
+- [x] T036 [P] [US2] Implement a data-driven staged-roadmap component that uses provisional horizons and implies no dates in `website/.vitepress/theme/components/RoadmapTimeline.vue`
+- [x] T037 [P] [US2] Replace the English Architecture skeleton with Profile-defined Agent wording, Skill prompt-context explanation, module boundaries, draft architecture, visible limitations, and local imports/rendering for `ArchitectureMap.vue` plus all relevant T034 diagrams in `website/architecture.md`
+- [x] T038 [P] [US2] Replace the English Roadmap skeleton with provisional visual horizons for current foundations, active runtime-kernel work, enterprise-hardening goals, the distributed long-term direction, limitations without real capability-state badges, and a local import/rendering for `RoadmapTimeline.vue` in `website/roadmap.md`
+- [x] T039 [P] [US2] Implement responsive diagram, module-grid, legend, and roadmap presentation in the already imported `website/.vitepress/theme/styles/architecture-roadmap.css`
+- [x] T040 [US2] Run a production build and `architecture-roadmap.spec.ts`, verify the locally imported ArchitectureMap, RoadmapTimeline, and three T034 diagrams are rendered, and fix User Story 2 files until the focused tests pass
 
-**Checkpoint**: Architecture, Roadmap, and the manual-only deployment mechanism are independently reviewable.
+**Checkpoint**: Architecture and Roadmap are locally reviewable and Constitution-aligned.
 
 ---
 
-## Phase 5: User Story 3 - Browse Equivalent English and Chinese Content (Priority: P2)
+## Phase 5: User Story 3 - Equivalent English and Chinese Journeys (Priority: P2)
 
-**Goal**: Deliver equivalent English and Chinese core journeys, Page-ID-based language switching, explicit
-translation fallback, and a locale-aware not-found experience.
-
-**Independent Test**: Visit Home, Architecture, Roadmap, Documentation, and Community in both locales, switch
-language from every page, and confirm matching states, claims, actions, route purpose, metadata, and fallback
-behavior under `/oryxos/`.
+**Goal**: Provide equivalent bilingual page forms, navigation, language switching, fallback behavior, and social
+presentation.
 
 ### Tests for User Story 3
 
-- [ ] T044 [P] [US3] Write failing Node tests for equal required Page ID sets, counterpart source paths, Claim/state/action parity, translation review state, unique localized metadata, and fallback restrictions in `website/tests/scripts/locale-parity.test.mjs`
-- [ ] T045 [P] [US3] Write failing Playwright tests for English-root behavior, `/zh/` deep links, Page-ID-equivalent switching, keyboard locale-menu operation, fallback handling, locale metadata, and active-language 404 recovery in `website/tests/e2e/locale-navigation.spec.ts`
+- [x] T041 [P] [US3] Write failing Playwright tests for all required counterpart routes, language-switch targets, keyboard activation, active-language labels, locale isolation, and the real missing-counterpart branch from `/test-fixtures/locale-fallback` to `/zh/translation-unavailable` in `website/tests/e2e/locale-switching.spec.ts`
+- [x] T042 [P] [US3] Extend `website/tests/scripts/check-content.test.mjs` with failing assertions for shared page templates, CTA-purpose keys, roadmap-stage keys, draft status, and capability-legend parity across locales
 
 ### Implementation for User Story 3
 
-- [ ] T046 [US3] Author the semantically equivalent Chinese home page with matching capability states, Claim IDs, primary actions, and Pre-alpha/single-node/Distributed Vision boundaries in `website/zh/index.md`
-- [ ] T047 [P] [US3] Author the semantically equivalent Chinese Architecture page in `website/zh/architecture.md`
-- [ ] T048 [P] [US3] Author the semantically equivalent Chinese Roadmap page in `website/zh/roadmap.md`
-- [ ] T049 [P] [US3] Create concise equivalent English and Chinese core Documentation and Community entry pages in `website/docs/index.md`, `website/zh/docs/index.md`, `website/community.md`, and `website/zh/community.md`
-- [ ] T050 [US3] Implement Page-manifest-based counterpart resolution and the accessible desktop/mobile locale control in `website/.vitepress/theme/lib/locale-routes.ts` and `website/.vitepress/theme/components/LocaleSwitcher.vue`
-- [ ] T051 [P] [US3] Author explicit English and Chinese translation-unavailable recovery pages in `website/translation-unavailable.md` and `website/zh/translation-unavailable.md`
-- [ ] T052 [US3] Implement a root `404.html` source with static bilingual recovery links and locale-prioritized progressive enhancement in `website/404.md` and `website/.vitepress/theme/components/NotFoundPage.vue`
-- [ ] T053 [P] [US3] Create the editable Chinese social-card source and final 1200x630 PNG with equivalent Pre-alpha meaning in `website/public/social/og-default-zh.svg` and `website/public/social/og-default-zh.png`
-- [ ] T054 [US3] Complete localized core navigation, Page counterpart metadata, social defaults, and reviewed translation states in `website/.vitepress/config/locales.ts`, `website/.vitepress/config/navigation.ts`, and `website/data/pages.json`
-- [ ] T055 [US3] Run `locale-parity.test.mjs` and `locale-navigation.spec.ts` against all five core Page IDs and fix User Story 3 regressions in `website/tests/scripts/locale-parity.test.mjs` and `website/tests/e2e/locale-navigation.spec.ts`
+- [x] T043 [P] [US3] Replace the Chinese home skeleton with equivalent conservative positioning and page composition in `website/zh/index.md`
+- [x] T044 [P] [US3] Replace the Chinese Architecture and Roadmap skeletons with equivalent Profile/Skill semantics, provisional visual horizons, long-term-direction boundary, and limitations without real capability-state badges in `website/zh/architecture.md` and `website/zh/roadmap.md`
+- [x] T045 [P] [US3] Create the Chinese social-card SVG source and localized social metadata in `website/public/social/og-default-zh.svg` and `website/.vitepress/config/metadata.ts`
+- [x] T046 [P] [US3] Implement manifest-driven equivalent-page and missing-counterpart fallback resolution in `website/.vitepress/theme/components/LocaleSwitcher.vue` and mount its accessible mobile/desktop controls through the appropriate default-theme slots in `website/.vitepress/theme/Layout.vue`
+- [x] T047 [P] [US3] Implement explicit English and Chinese translation-unavailable pages and locale-aware recovery content in `website/translation-unavailable.md`, `website/zh/translation-unavailable.md`, and `website/404.md`
+- [x] T048 [P] [US3] Implement localized navigation, switcher, fallback, and CJK typography refinements in the already imported `website/.vitepress/theme/styles/locale.css`
+- [x] T049 [US3] Run content tests, production build, and `locale-switching.spec.ts`; fix User Story 3 implementation files until route parity and language switching pass
 
-**Checkpoint**: All five core journeys work in English and Chinese with explicit equivalent-page behavior.
+**Checkpoint**: Home, Architecture, Roadmap, fallback, and navigation work equivalently in both locales.
 
 ---
 
-## Phase 6: User Story 4 - Learn and Join the Project (Priority: P3)
+## Phase 6: User Story 4 - Documentation and Community Page Forms (Priority: P3)
 
-**Goal**: Deliver the complete bilingual conceptual/runtime documentation set, verified source-build guidance,
-honest CLI/REST limitations, contribution guidance, license/governance context, and approved community links.
-
-**Independent Test**: Starting at Documentation or Community, a visitor can reach every required topic in both
-languages, distinguish current behavior from target design, build the source using verified instructions, and
-reach reviewed repository/license/contribution destinations without encountering a runnable claim for an
-unavailable CLI command, API, MCP flow, or Runtime workflow.
+**Goal**: Fill every required documentation and community route with coherent visual forms and visibly
+provisional, non-runnable copy.
 
 ### Tests for User Story 4
 
-- [ ] T056 [P] [US4] Write failing Node tests for all thirteen documentation topic pairs, required incomplete-capability sections, evidence refs, non-runnable design labels, approved external destinations, and bilingual sidebar coverage in `website/tests/scripts/documentation-contract.test.mjs`
-- [ ] T057 [P] [US4] Write failing Playwright tests for documentation discovery, sidebar navigation, build guidance, incomplete Provider/ReAct/Tool/Memory/Skill/Profile/CLI/REST disclosures, Community links, license, oryx-labs relationship, and ASF aspiration wording in `website/tests/e2e/documentation-community.spec.ts`
+- [x] T050 [P] [US4] Write failing Playwright tests for Documentation index hierarchy, all required topic routes, visible localized draft notices, required documentation sections, related navigation, Community destinations, and absence of runnable CLI/API presentation in `website/tests/e2e/documentation-community.spec.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T058 [US4] Run the repository wrapper verification required for source-build evidence and record the exact command, ref, result, and limitations in `website/data/evidence.json` before authoring runnable build guidance
-- [ ] T059 [P] [US4] Author equivalent What is OryxOS, Why Java, and Design Principles page pairs in `website/docs/concepts/what-is-oryxos.md`, `website/zh/docs/concepts/what-is-oryxos.md`, `website/docs/concepts/why-java.md`, `website/zh/docs/concepts/why-java.md`, `website/docs/concepts/design-principles.md`, and `website/zh/docs/concepts/design-principles.md`
-- [ ] T060 [US4] Author equivalent Project Status and verified Build from Source page pairs using T058 evidence in `website/docs/project/project-status.md`, `website/zh/docs/project/project-status.md`, `website/docs/getting-started/build-from-source.md`, and `website/zh/docs/getting-started/build-from-source.md`
-- [ ] T061 [P] [US4] Author equivalent Contributing pages and expand both Community pages with reviewed repository, issue, license, governance, oryx-labs, and ASF-aspiration wording in `website/docs/contributing.md`, `website/zh/docs/contributing.md`, `website/community.md`, and `website/zh/community.md`
-- [ ] T062 [P] [US4] Author evidence-backed Provider and ReAct Loop page pairs with publication state, current behavior, target design, limitations, unavailable behavior, and evidence in `website/docs/runtime/provider.md`, `website/zh/docs/runtime/provider.md`, `website/docs/runtime/react-loop.md`, and `website/zh/docs/runtime/react-loop.md`
-- [ ] T063 [P] [US4] Author evidence-backed Tool and Memory page pairs with the required incomplete-capability sections in `website/docs/runtime/tool.md`, `website/zh/docs/runtime/tool.md`, `website/docs/runtime/memory.md`, and `website/zh/docs/runtime/memory.md`
-- [ ] T064 [P] [US4] Author the Skill/Profile page pair using the canonical public equation, Profile-entry-point caveat, governance discrepancy, and verified implementation limits in `website/docs/runtime/skill-profile.md` and `website/zh/docs/runtime/skill-profile.md`
-- [ ] T065 [P] [US4] Author CLI and REST API page pairs that distinguish verified help/version and response/error infrastructure from unavailable subcommands and business endpoints in `website/docs/interfaces/cli.md`, `website/zh/docs/interfaces/cli.md`, `website/docs/interfaces/rest-api.md`, and `website/zh/docs/interfaces/rest-api.md`
-- [ ] T066 [P] [US4] Create an original accessible ReAct target-design diagram with no implication of current runnable completeness in `website/public/diagrams/react-loop.svg`
-- [ ] T067 [US4] Complete the bilingual documentation indexes, grouped sidebars, previous/next links, Page/Claim mappings, and navigation destinations in `website/docs/index.md`, `website/zh/docs/index.md`, `website/.vitepress/config/navigation.ts`, and `website/data/pages.json`
-- [ ] T068 [US4] Review every Community and documentation external destination, remove or replace invalid targets, and record the publication-time result in `website/data/external-links.json`
-- [ ] T069 [US4] Run `documentation-contract.test.mjs` and `documentation-community.spec.ts`, then fix only User Story 4 content, route, evidence, and navigation regressions in `website/tests/scripts/documentation-contract.test.mjs` and `website/tests/e2e/documentation-community.spec.ts`
+- [x] T051 [P] [US4] Replace the English Documentation index and concept skeletons for What is OryxOS, Why Java, and Design Principles in `website/docs/index.md` and `website/docs/concepts/*.md`
+- [x] T052 [P] [US4] Replace the English Project Status, Build from Source, and Contributing skeletons with safe prototype forms that omit unverified commands in `website/docs/project/project-status.md`, `website/docs/getting-started/build-from-source.md`, and `website/docs/contributing.md`
+- [x] T053 [P] [US4] Replace the English Provider, ReAct Loop, Tool, Memory, and Skill/Profile skeletons with labeled intended-design forms in `website/docs/runtime/*.md`
+- [x] T054 [P] [US4] Replace the English CLI and REST API skeletons with non-executable labeled placeholders and limitations in `website/docs/interfaces/cli.md` and `website/docs/interfaces/rest-api.md`
+- [x] T055 [P] [US4] Replace the Chinese Documentation index and concept skeletons with equivalent visual forms in `website/zh/docs/index.md` and `website/zh/docs/concepts/*.md`
+- [x] T056 [P] [US4] Replace the Chinese Project Status, Build from Source, and Contributing skeletons with equivalent safe prototype forms in `website/zh/docs/project/project-status.md`, `website/zh/docs/getting-started/build-from-source.md`, and `website/zh/docs/contributing.md`
+- [x] T057 [P] [US4] Replace the Chinese Runtime, CLI, and REST API skeletons with equivalent labeled intended-design forms in `website/zh/docs/runtime/*.md` and `website/zh/docs/interfaces/*.md`
+- [x] T058 [P] [US4] Replace both Community skeletons with approved repository, license, issue/discussion, governance, oryx-labs, and future-ASF-aspiration presentation in `website/community.md` and `website/zh/community.md`
+- [x] T059 [US4] Implement Documentation landing/topic-card presentation and community-link grouping in `website/.vitepress/theme/components/DocumentationLanding.vue`, `website/.vitepress/theme/components/TopicGrid.vue`, and `website/.vitepress/theme/components/CommunityLinks.vue`; locally import and render them from both localized Documentation indexes and Community pages
+- [x] T060 [P] [US4] Implement documentation templates, draft notices, topic cards, tables, placeholder examples, and community layouts in the already imported `website/.vitepress/theme/styles/documentation.css` and `website/.vitepress/theme/styles/community.css`
+- [x] T061 [US4] Run content tests, production build, and `documentation-community.spec.ts`; fix User Story 4 implementation files until all required page forms pass without adding runnable unverified interfaces
 
-**Checkpoint**: The complete first-release bilingual documentation and participation journey is independently usable.
-
----
-
-## Phase 7: Polish, Quality Gates, and Validation Deployment
-
-**Purpose**: Apply cross-story accessibility, responsive, metadata, security, asset, truthfulness, and deployment
-gates to the complete static site.
-
-- [ ] T070 [P] Add breakpoint-edge, long code/table/URL, 320-1440 CSS-pixel, 200%-reflow proxy, and print-safe layout rules in `website/.vitepress/theme/styles/responsive.css`
-- [ ] T071 [P] Add whole-route keyboard, mobile-menu, locale-menu, focus-return, visible-focus, reduced-motion, and axe scans for initial and open-menu states in `website/tests/e2e/accessibility.spec.ts`
-- [ ] T072 [P] Add whole-route checks for direct `/oryxos/` entry, unique metadata, canonical/hreflang, social images, favicon/diagram loading, alt attributes, JavaScript-disabled content, browser errors, and failed required requests in `website/tests/e2e/site-quality.spec.ts`
-- [ ] T073 Export and register PNG favicons, the 180x180 touch icon, social-image dimensions, asset ownership, locale, purpose, and accessibility treatment in `website/public/icons/favicon-16.png`, `website/public/icons/favicon-32.png`, `website/public/icons/apple-touch-icon.png`, and `website/public/brand/asset-manifest.json`
-- [ ] T074 Enforce validation-site indexing controls through page metadata and a full crawler disallow rule in `website/.vitepress/config/metadata.ts` and `website/public/robots.txt`
-- [ ] T075 Extend content-validator tests and implementation to reject likely secrets, private credentials, internal network addresses, analytics/tracking scripts, remote CMS dependencies, and internal Agent/Tool/Memory/Profile API calls in `website/tests/scripts/check-content.test.mjs` and `website/scripts/check-content.mjs`
-- [ ] T076 Run `npm ci`, script tests, content validation, type checking, VitePress build, output verification, Chromium/axe tests, and the full release browser matrix, then record commands and results in `specs/002-oryxos-website/checklists/implementation-validation.md`
-- [ ] T077 Perform and record the manual bilingual semantic, Claim/Evidence, discrepancy, external-link, brand-originality, and asset-consistency review in `specs/002-oryxos-website/checklists/release-review.md`
-- [ ] T078 Perform and record real Chrome and Firefox 200% zoom, keyboard-only journeys, visible-focus quality, WCAG 2.2 AA contrast, 320-1440 layout, diagram comprehension, and alt-text usefulness review in `specs/002-oryxos-website/checklists/release-review.md`
-- [ ] T079 Conduct the representative 60-second first-visit review for SC-001 and record participant count, prompts, raw outcomes, and the percentage correctly identifying all five positioning attributes in `specs/002-oryxos-website/checklists/first-visit-review.md`
-- [ ] T080 After Node 24 and workflow-policy validation pass, mark `DISC-DEPLOY-002` resolved and advance `DISC-DEPLOY-001` only to `accepted-for-validation`, preserving every documentation/governance blocker in `specs/002-oryxos-website/discrepancy-register.yaml`
-- [ ] T081 After explicit maintainer approval, trigger `.github/workflows/deploy-pages.yml` for an immutable commit with the approved review ID, discrepancy snapshot, public-access acknowledgement, and `noindex` mode, and record the run ID in `specs/002-oryxos-website/checklists/deployed-validation.md`
-- [ ] T082 Verify the deployed English/Chinese core and deep routes, assets, 404 recovery, metadata, no-index controls, and zero automatic main-push deployment behavior; record the URL/results and then resolve `DISC-DEPLOY-001` with workflow evidence in `specs/002-oryxos-website/checklists/deployed-validation.md` and `specs/002-oryxos-website/discrepancy-register.yaml`
-
-**Checkpoint**: All automated gates pass, manual release review is recorded, validation deployment is explicitly
-approved and verified, and unresolved documentation/governance discrepancies still block formal publication.
+**Checkpoint**: All 36 required localized routes contain complete visual page forms.
 
 ---
 
-## Dependencies & Execution Order
+## Phase 7: Quality, Assets, CI, and Local Approval
 
-### Phase Dependencies
+**Purpose**: Validate the complete prototype as a static, accessible, responsive, non-deploying site.
 
-- **Phase 1 - Setup**: No dependencies; begins immediately.
-- **Phase 2 - Foundational**: Depends on Phase 1 and blocks every user story.
-- **Phase 3 - User Story 1**: Depends on Phase 2; this is the local MVP.
-- **Phase 4 - User Story 2**: Depends on Phase 2 and can run in parallel with User Story 1. Its complete
-  home-to-Architecture/Roadmap journey is validated after User Story 1 exists.
-- **Phase 5 - User Story 3**: Depends on the English core pages from User Stories 1 and 2 because translations and
-  equivalent-page routing require stable English counterparts.
-- **Phase 6 - User Story 4**: Depends on Phase 2 and the locale conventions from T050/T054. Paired documentation
-  authoring can proceed in parallel once those locale conventions are stable.
-- **Phase 7 - Polish and Deployment**: Depends on all four stories. T081 additionally requires explicit user or
-  maintainer approval and must not be executed merely because local checks passed.
+- [x] T062 [P] Write full-site keyboard, focus, landmark, heading, image-alt, and axe checks across representative page types and both locales in `website/tests/e2e/accessibility.spec.ts`
+- [x] T063 [P] Write the full viewport-matrix overflow, long-code/table/URL, mobile navigation, reduced-motion, and responsive composition checks in `website/tests/e2e/responsive.spec.ts`
+- [x] T064 [P] Write a full required-route and fragment crawl with required-resource, console-error, failed-request, unique metadata, locale metadata, counterpart metadata, and localized social-image-alt assertions in `website/tests/e2e/site-integrity.spec.ts`
+- [x] T065 Generate all favicon, Apple Touch, English/Chinese social PNG outputs and `website/public/brand/asset-manifest.json`; run the full required source/export inventory and manifest-schema validator across marks, wordmark, lockup, favicon, social cards, and diagrams; then register favicon and touch-icon links through `website/.vitepress/config/metadata.ts`
+- [x] T066 Refine the complete visual system for consistent spacing, typography, focus, hover, active states, 320-1440 layouts, and 200% zoom in the already imported files under `website/.vitepress/theme/styles/`
+- [x] T067 Complete the SSR-rendered bilingual prototype notice, English/Chinese recovery groups, optional retained-path locale prioritization, and not-found presentation in `website/.vitepress/theme/components/NotFoundExperience.vue`, mount it through the VitePress not-found layout path in `website/.vitepress/theme/Layout.vue`, and integrate `website/404.md` plus `website/.vitepress/theme/styles/not-found.css`
+- [x] T068 Harden the Setup-created path-filtered, read-only website validation pipeline so it configures Node with `node-version-file: website/.nvmrc`, runs `npm ci`, installs Playwright Chromium, executes `npm run test:quality`, and optionally uploads an ordinary artifact in `.github/workflows/website-ci.yml`
+- [x] T069 Harden the Setup-created `.github/workflows/website-prototype-artifact.yml` so it configures Node with `node-version-file: website/.nvmrc`, runs `npm ci` and the complete quality sequence, uploads only an ordinary Actions artifact, and retains no Pages permission, OIDC write permission, Pages action, deployment Environment, or public deployment path
+- [x] T070 Run `npm run test:workflow-policy`, fix `.github/workflows/website-ci.yml`, `.github/workflows/website-prototype-artifact.yml`, or the policy implementation until all workflows prove non-deploying, then set `DISC-DEPLOYMENT-001` to `prototype_handling: resolved`, `public_deployment_blocked: false`, and `status: resolved` in `specs/002-oryxos-website/discrepancy-register.yaml`
+- [x] T071 Run accessibility, responsive, and site-integrity suites against a fresh production build; fix affected components, Markdown, configuration, data, assets, or imported styles until the suites pass without weakening checks
+- [x] T072 Run `npm ci` followed by `npm run test:quality` from `website/` with no Runtime process, database, private credential, or Maven command; fix reproducibility failures in website-owned files
+- [x] T073 Manually verify approved external repository, license, issue/discussion, governance, and organization destinations and update only `website/data/external-links.json` plus affected localized pages when a destination is invalid
+- [x] T074 Complete discrepancy and external-link discovery before approval, run the locked Chromium local-review suite, and perform the bilingual visual review from `quickstart.md`; record the final discrepancy snapshot, brand creator/generation process, third-party license statement, size-specific asset legibility, and concrete results in `website/data/prototype-review.json`, repeating automated and manual review after every fix until it records `approved-for-prototype`
+- [x] T075 After the final review edit, run fresh `npm ci`, `npm run test:quality`, and `npm run test:workflow-policy`; verify the diff does not modify README or Runtime sources, implementation files do not reference retired-site content, and workflows cannot deploy. If this check discovers an issue requiring any file mutation, return to T074, refresh the review snapshot and approval, then repeat T075; T075 completes only without further mutations
 
-### User Story Dependency Graph
-
-```text
-Setup
-  -> Foundational
-      -> User Story 1 (English public-entry MVP) -----+
-      -> User Story 2 (Architecture/Roadmap/Policy) --+-> User Story 3 (Core bilingual parity)
-      -> User Story 4 content research can begin -----+        |
-                                                               +-> User Story 4 integration
-                                                                    -> Polish and validation deployment
-```
-
-### Within Each User Story
-
-- Write the listed tests first and observe the expected failure.
-- Create data/assets and localized content before wiring navigation that points to them.
-- Keep evidence-backed states and Claim IDs synchronized with content.
-- Run the story-specific tests before its checkpoint.
-- Do not use the full-site green state as a prerequisite for an earlier story checkpoint; the complete suite becomes
-  mandatory in T076.
-
-### Parallel Opportunities
-
-- T004-T006 can proceed in parallel after T001-T003 establish the project.
-- T008-T012, T018-T020 can proceed in parallel within the foundational phase.
-- User Stories 1 and 2 can proceed in parallel after Phase 2.
-- English/Chinese page pairs grouped under different US4 tasks can be authored in parallel after locale
-  conventions and evidence states are stable.
-- Original diagrams and social assets can proceed in parallel with prose in the same story when their conceptual
-  model is already fixed by the contracts.
-- Cross-route test files T070-T072 can proceed in parallel before final integrated execution.
+**Final Checkpoint**: The complete bilingual visual prototype builds and passes local/CI quality checks under
+`/oryxos/`, has an approved local visual review, and remains impossible to publish through repository workflows.
 
 ---
 
-## Parallel Example: User Story 1
+## Dependencies and Execution Order
 
-```text
-Task T022: Write home positioning and keyboard tests in website/tests/e2e/home.spec.ts
-Task T023: Write no-JavaScript static-content tests in website/tests/e2e/static-content.spec.ts
+### Phase dependencies
 
-After tests fail as expected:
-Task T024: Create original SVG identity assets under website/public/brand/ and website/public/icons/
-Task T025: Create the English social card under website/public/social/
-Task T026: Implement website/.vitepress/theme/components/HomeLanding.vue
-Task T027: Author website/index.md
-Task T028: Implement website/.vitepress/theme/styles/home.css
-```
+- Phase 1 has no dependencies.
+- Phase 2 depends on Phase 1 and blocks all user stories.
+- User Stories 1 and 2 may proceed in parallel after Phase 2 because their implementation files do not overlap.
+- User Story 3 depends on the English Home, Architecture, and Roadmap forms from User Stories 1 and 2.
+- User Story 4 depends only on Phase 2 and may run in parallel with User Stories 1 and 2, but its final locale test runs after User Story 3 switching is available.
+- Phase 7 depends on all user stories.
 
-## Parallel Example: User Story 2
+### Required command ordering
 
-```text
-Task T031: Write Architecture/Roadmap browser tests
-Task T032: Write workflow-policy tests
+1. `npm ci`
+2. `npm run test:scripts`
+3. `npm run check:content`
+4. `npm run assets:build && npm run assets:verify`
+5. `npm run docs:typecheck`
+6. `npm run docs:build`
+7. Start `npm run docs:preview`
+8. Run Playwright/axe against that production preview
 
-After tests fail as expected:
-Task T033: Create architecture diagrams
-Task T034: Implement CapabilityMatrix.vue
-Task T035: Implement RoadmapTimeline.vue
-Task T036: Author architecture.md
-Task T037: Author roadmap.md
-Task T040: Create the validation-review template
-Task T041: Create the non-deploying website CI workflow
-```
+The development server is for authoring only and is never the release-quality test target.
 
-## Parallel Example: User Story 3
+### Parallel examples
 
-```text
-Task T044: Write locale contract tests
-Task T045: Write locale navigation browser tests
-
-After tests fail as expected:
-Task T047: Author the Chinese Architecture page
-Task T048: Author the Chinese Roadmap page
-Task T049: Create bilingual Documentation and Community entry pages
-Task T051: Create explicit translation fallback pages
-Task T053: Create the Chinese social card
-```
-
-## Parallel Example: User Story 4
-
-```text
-Task T056: Write documentation contract tests
-Task T057: Write documentation and Community browser tests
-
-After locale conventions and evidence are stable:
-Task T059: Author conceptual documentation pairs
-Task T061: Author Contributing and Community pairs
-Task T062: Author Provider and ReAct pairs
-Task T063: Author Tool and Memory pairs
-Task T064: Author the Skill/Profile pair
-Task T065: Author CLI and REST API pairs
-Task T066: Create the ReAct target-design diagram
-```
-
----
+- T008, T009, and T010 may be written in parallel.
+- T027-T030 may run in parallel after the User Story 1 tests fail as expected.
+- T034-T039 may run in parallel after T033 fails as expected.
+- T043-T048 may run in parallel after T041 and T042 fail as expected.
+- T051-T058 and T060 may run in parallel after T050 fails as expected; T059 then integrates the components into
+  the content files created by those tasks.
+- T062-T064 may be written in parallel before full-site execution.
 
 ## Implementation Strategy
 
-### MVP First: User Story 1 Only
+### Visual MVP
 
-1. Complete Phase 1.
-2. Complete Phase 2.
-3. Complete Phase 3.
-4. Stop and validate the English home page independently.
-5. Treat this as a local content/visual MVP only; do not deploy it to Pages.
+1. Complete Phase 1 and Phase 2, including every route skeleton.
+2. Complete User Story 1 and review the English home presentation locally.
+3. Complete User Story 2 and review the visual architecture/roadmap language.
+4. Do not publish this partial result.
 
-### Incremental Delivery
+### Complete prototype
 
-1. **Foundation**: reproducible static project, shared data contracts, validators, and theme.
-2. **US1**: truthful English public entry point.
-3. **US2**: transparent Architecture/Roadmap plus manual-only deployment policy.
-4. **US3**: equivalent bilingual core journeys and robust locale recovery.
-5. **US4**: complete bilingual documentation and contributor journey.
-6. **Final gates**: full automation, manual review, approved validation deployment, and discrepancy evidence.
-
-### Parallel Team Strategy
-
-After Phase 2:
-
-- Developer A can implement User Story 1.
-- Developer B can implement User Story 2.
-- A bilingual reviewer can prepare terminology and parity review while waiting for stable English pages.
-- Documentation authors can research User Story 4 evidence without publishing pages until locale conventions and
-  Claim states are fixed.
-- Brand/diagram work can proceed independently as long as it follows `contracts/brand-assets.md` and does not use
-  retired-site material.
-
----
-
-## Notes
-
-- All paths are Linux/workspace-relative paths under `k-oryxos`.
-- If installing Node.js 24 or Playwright browsers encounters a permission error, stop and ask the user how to
-  proceed; do not install into an unapproved alternate location or weaken version requirements.
-- `README.md` and existing authoritative project documents are outside implementation scope.
-- `.website.bak` is excluded from all discovery and implementation work.
-- Do not add `website/` to Maven modules or package website output into the Spring Boot JAR.
-- Do not start or call OryxOS Runtime services for normal website build/test flows.
-- Validation deployment is public-address validation, not formal publication.
-- T081 requires explicit approval and must not be performed automatically by an implementation agent.
+1. Add bilingual journeys and all documentation/community page forms.
+2. Run complete browser, accessibility, responsive, route, asset, and workflow checks.
+3. Record and close the local visual review loop.
+4. Hand unresolved copy/evidence/deployment work to a separate content-and-publication Feature.

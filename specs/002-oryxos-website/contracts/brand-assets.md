@@ -14,11 +14,11 @@ must be original project work and must not read, trace, copy, adapt, or depend o
 | `brand-lockup-horizontal` | `public/brand/lockup-horizontal.svg` | 2× PNG optional | Navigation and broad layouts |
 | `brand-mark-monochrome` | `public/brand/logo-mark-monochrome.svg` | None | Single-color usage |
 | `icon-favicon-svg` | `public/icons/favicon.svg` | PNG 32×32 and 16×16 | Browser icon |
-| `icon-apple-touch` | Editable source | PNG 180×180 | Touch icon |
-| `social-default-en` | Editable SVG source | PNG 1200×630 | English social card |
-| `social-default-zh` | Editable SVG source | PNG 1200×630 | Chinese social card |
+| `icon-apple-touch` | `public/icons/apple-touch-icon.svg` | PNG 180x180 | Touch icon |
+| `social-default-en` | `public/social/og-default-en.svg` | PNG 1200x630 | English social card |
+| `social-default-zh` | `public/social/og-default-zh.svg` | PNG 1200x630 | Chinese social card |
 | `diagram-system-architecture` | `public/diagrams/system-architecture.svg` | Optional 2× PNG | Runtime/module architecture |
-| `diagram-agent-definition` | `public/diagrams/agent-skill-profile.svg` | Optional 2× PNG | Skill + Profile concept |
+| `diagram-agent-definition` | `public/diagrams/agent-skill-profile.svg` | Optional 2× PNG | Profile-defined Agent and referenced Skill relationship |
 | `diagram-react-loop` | `public/diagrams/react-loop.svg` | Optional 2× PNG | ReAct target design |
 | `brand-asset-manifest` | `public/brand/asset-manifest.json` | None | Purpose, locale, dimensions, alt key, ownership |
 
@@ -40,6 +40,14 @@ must be original project work and must not read, trace, copy, adapt, or depend o
 - Do not place essential explanatory prose only inside SVG paths.
 - If embedded language is necessary, provide explicit English and Chinese variants.
 
+## Reproducible export
+
+- `@resvg/resvg-js` is the locked local SVG renderer.
+- `website/scripts/export-assets.mjs` generates all required PNG outputs from committed SVG sources.
+- `npm run assets:build` performs export; `npm run assets:verify` checks file type, exact dimensions, and non-empty
+  output.
+- No global Inkscape, ImageMagick, browser screenshot utility, or manual export is required for the build.
+
 ## Accessibility
 
 - Logo links receive their accessible name from surrounding link text or an appropriate label.
@@ -50,7 +58,7 @@ must be original project work and must not read, trace, copy, adapt, or depend o
 
 ## Social image requirements
 
-- Final output is PNG 1200×630.
+- Final output is PNG 1200x630.
 - English and Chinese cards communicate equivalent project status.
 - Both include OryxOS identity and a visible Pre-alpha indicator.
 - Text remains inside a safe region that survives common social cropping.
@@ -58,7 +66,7 @@ must be original project work and must not read, trace, copy, adapt, or depend o
 
 ## Originality review
 
-Before release review, record:
+Before local prototype approval, record:
 
 - creator or generating process;
 - confirmation that no retired website asset was referenced;

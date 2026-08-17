@@ -1,108 +1,101 @@
-# Content Governance Contract
+# Prototype Content Contract
 
-## Canonical public concept
+## Scope
 
-The website uses the conceptual model:
+This Feature produces a local visual prototype. Page layout, headings, summaries, and explanatory copy may be
+provisional when they support presentation review. Provisional copy is not final project documentation and must
+not be deployed to a public address by this Feature.
 
-> Skill defines what an Agent does. Profile defines how it runs. Skill + Profile together define an Agent.
+## Constitution-aligned Agent concept
 
-The YAML Profile remains the authoritative runtime configuration entry and declares or references the selected
-Skill. Until Runtime implementation verifies Skill loading, the website labels the behavior according to its
-evidence-backed capability state.
+The prototype uses this canonical concept:
 
-## Capability states
+> One YAML Profile completely defines an Agent. The Profile may declare or reference a Skill that supplies
+> behavioral instructions and is loaded as prompt context.
 
-Only these values are permitted:
+The prototype must not describe Skill as a separately executable Tool or as a second configuration object that is
+required alongside Profile to define an Agent.
 
-| Machine value | Required English label | Meaning |
-|---|---|---|
-| `available` | Available | Implemented and backed by reproducible evidence for a stated ref |
-| `in-development` | In development | Current implementation work or partial behavior exists, but the capability is not a stable workflow |
-| `planned` | Planned | Approved target design exists without verified current implementation |
-| `vision` | Vision | Long-term direction, not a delivery date or version commitment |
+## Draft notice
 
-State must be assigned to atomic capabilities. A module, page, POM description, or design document does not make
-all named behavior Available.
+Every prototype page displays a visually prominent and programmatically discoverable notice:
 
-## Claim publication rules
+```text
+Draft visual prototype — content is provisional and not public documentation.
+```
 
-1. Every factual product statement has a Claim ID.
-2. English and Chinese pages reference the same Claim IDs.
-3. An Available claim requires both implementation evidence and reproducible validation evidence.
-4. Governance or design documents may support Planned or Vision claims but cannot alone support Available.
-5. `contradicted` or `unverified` claims are blocked from factual publication.
-6. A `validation-only` claim may appear only with explicit limitations and release-review approval.
-7. Website prose may explain evidence but may not silently strengthen the registered state.
+The Chinese page displays an equivalent localized notice. The notice is supplied by the SSR-rendered shared
+layout, appears before substantive page content, and is not hidden by CSS or client-only rendering.
 
-## Incomplete capability page contract
+## Required provisional page form
 
-Provider, ReAct Loop, Tool, Memory, Skill/Profile, CLI, and REST API pages must visibly contain:
+Each provisional documentation page additionally contains these sections:
 
-1. **Publication state**
-2. **Verified current behavior**
-3. **Target design**
-4. **Known limitations**
-5. **What is not currently available**
-6. **Related evidence**
-7. **Related concepts**
+1. Overview
+2. Intended design
+3. Status placeholder
+4. Limitations placeholder
+5. Related navigation
 
-Illustrative designs and non-runnable examples must be labeled:
+These sections exist to review information hierarchy. They do not imply that the content has passed final source,
+release, or authoritative-document verification.
 
-> Illustrative target design — not currently runnable.
+## Allowed provisional variation
 
-Commands, API paths, and examples may be labeled runnable only after executing them against the exact reviewed
-source or release ref.
+The following may differ from final publication content:
 
-## Evidence precedence
+- marketing phrasing and section summaries;
+- illustrative labels and short examples that are not executable;
+- diagram annotations and page ordering;
+- localized wording, provided route purpose and draft status remain equivalent.
 
-Use this order when claims conflict:
+## Prohibited prototype claims
 
-1. Reproducible verification against an identified release artifact or commit
-2. Implemented source and configuration at an identified ref
-3. Approved governance and Feature specifications
-4. Technical design documents
-5. README and other descriptive prose
+The prototype must not:
 
-Lower-precedence material can establish intent or a discrepancy, not override higher-precedence evidence.
+- describe an unverified capability as Available, production-ready, secure-certified, or enterprise-proven;
+- present `init`, `chat`, `serve`, REST endpoints, MCP flows, or other unverified interfaces as runnable;
+- include real or placeholder secrets, personal data, internal network addresses, or tracking scripts;
+- call Agent, Tool, Memory, Profile-management, or other Runtime APIs;
+- use copy or assets from `.website.bak`;
+- publish provisional content to GitHub Pages or another public address.
 
-## Discrepancy handling
+## Capability-state visual legend
 
-- This Feature records conflicts in `discrepancy-register.yaml` and does not modify README or existing
-  authoritative documents.
-- Each discrepancy identifies sources, observed fact, impact, severity, follow-up action, and publication status.
-- `accepted-for-validation` permits an approved validation deployment; it does not resolve the factual conflict.
-- A contradiction that would create incompatible public facts blocks formal publication until a separate Feature
-  resolves it or provides new validating evidence.
-- Deployment and build configuration conflicts that are inside Feature 002 are resolved by Feature 002 tasks and
-  closed only after validation.
+The design may demonstrate the exact labels Available, In development, Planned, and Vision as a visual legend.
+Legend items explain how future verified content will be categorized. This Feature must not assign those states
+to any real capability.
 
-## Initial evidence expectations
+## Documentation discrepancies
 
-- CLI top-level help and version behavior may be evaluated independently from planned subcommands.
-- REST response wrappers and exception handling may be described independently from unimplemented business
-  endpoints.
-- Module boundaries and dependencies may be Available while the runtime behavior named in module descriptions is
-  still In development or Planned.
-- Distributed collaboration remains Vision unless verified implementation evidence is added.
+`discrepancy-register.yaml` records issues to resolve before final content publication. All unresolved
+content/governance discrepancies block public deployment. The prototype handles them with one of:
+
+- neutral copy;
+- a visible draft label;
+- omission of disputed detail.
+
+The register is a handoff artifact, not a waiver of Constitution requirements.
 
 ## Automated checks
 
-The content validator fails when:
+The prototype content validator fails when:
 
-- a state is outside the four-value enum;
-- the same Capability ID has different states on different pages;
-- locale counterparts reference different Claim IDs or capability states;
-- an Available Claim lacks required evidence types;
-- an incomplete capability page lacks a required section;
-- blocked Claim IDs are included in publishable content;
-- a required discrepancy field is missing.
+- a required route or locale counterpart is missing;
+- any page lacks the global draft notice;
+- a provisional documentation page lacks the required section form;
+- the source contains prohibited runnable-command or endpoint presentation;
+- a page assigns an availability state to any real capability;
+- likely secrets, personal data, internal addresses, tracking, CMS, or Runtime API calls are present;
+- any workflow contains Pages write permissions, Pages artifact upload, or Pages deployment actions.
 
 ## Manual checks
 
-Release review confirms:
+The local prototype review confirms:
 
-- English and Chinese prose have equivalent strength and limitations;
-- no target design is presented as implemented;
-- alt text and diagrams communicate the intended information;
-- open discrepancies are complete and accurately classified;
-- current evidence references the exact source or release being described.
+- provisional wording is visually obvious and conservative;
+- the Agent/Profile/Skill concept matches the Constitution;
+- no page appears to be final public documentation;
+- English and Chinese page forms have equivalent purpose;
+- diagrams and alt text communicate the intended visual structure;
+- all unresolved final-content discrepancies remain blocked from public deployment.

@@ -1,119 +1,101 @@
-# SEO and Validation Deployment Contract
+# Local Preview and Non-Deployment Contract
 
-## Deployment target
+## Prototype boundary
 
-- Origin: `https://oryx-labs.github.io`
-- Project base: `/oryxos/`
-- Deployment output: `website/.vitepress/dist`
-- Deployment mode for Feature 002: manually approved validation deployment only
-- Indexing mode for Feature 002: `noindex`
+- VitePress base: `/oryxos/`
+- Build output: `website/.vitepress/dist`
+- Allowed execution: local preview and non-deploying CI validation
+- Public GitHub Pages deployment: prohibited in this Feature
+- Final canonical origin, sitemap hostname, indexing policy, and public release review: deferred
 
-## Workflow separation
+## Website CI
 
-### Website CI
-
-Runs automatically for relevant pull requests and may run on relevant pushes, but never receives Pages write
-permissions and never deploys.
+The automatic website workflow is introduced as a safe skeleton during Setup and hardened during final quality
+work. It may run for relevant pull requests and pushes, uses only `contents: read`, may
+upload a regular Actions artifact, and never receives `pages: write` or `id-token: write`.
 
 Required sequence:
 
-1. Set up the exact Node.js 24 version from `website/.nvmrc`.
-2. `npm ci`
-3. Install Chromium for Playwright in CI.
-4. Run script unit tests and content validation.
-5. Run TypeScript/Vue type checking.
-6. `npm run docs:build`
-7. Run build-output and Chromium/axe checks against `vitepress preview`.
+1. Read the exact Node.js 24 version from `website/.nvmrc`.
+2. Run `npm ci`.
+3. Install Playwright Chromium and required Linux browser dependencies.
+4. Run script unit tests, prototype-content checks, asset export/verification, and type checking.
+5. Run `npm run docs:build` with dead-link checking enabled.
+6. Start `vitepress preview` for the built output and run Chromium/axe tests.
+7. Optionally upload `website/.vitepress/dist` with the ordinary Actions artifact action for authorized download.
 
-### Pages deployment
+## Existing Pages workflow
 
-The Pages workflow must use only:
+`.github/workflows/deploy-pages.yml` must be removed and replaced by
+`.github/workflows/website-prototype-artifact.yml`, a non-deploying manually triggered artifact workflow. Across
+all `.github/workflows/*`, automated policy tests reject:
 
-```yaml
-on:
-  workflow_dispatch:
+- `pages: write`;
+- `id-token: write` in either website workflow;
+- `actions/configure-pages`;
+- `actions/upload-pages-artifact`;
+- `actions/deploy-pages`;
+- branch-based Pages publication;
+- a job using the `github-pages` deployment Environment.
+
+The workflow may build and upload a regular CI artifact, but it must not create or update a public site.
+
+## Local production preview
+
+The supported prototype review command serves the completed production build below `/oryxos/`:
+
+```bash
+npm run docs:build
+npm run docs:preview -- --host 127.0.0.1 --port 4173
 ```
 
-It must not deploy on a main-branch push. The deploy job uses the protected `github-pages` Environment and runs
-only after validation for the exact source ref succeeds.
+Playwright uses the same sequence through its `webServer` command. Story-level checkpoints may filter test files,
+but the build always includes route skeletons for all required pages so dead-link checking remains enabled.
 
-## Manual workflow inputs
+## Prototype metadata
 
-| Input | Rule |
-|---|---|
-| `source_ref` | Full commit SHA; the workflow checks out this immutable ref |
-| `review_record_id` | Required release-review identifier |
-| `deployment_purpose` | Fixed to `validation` for this Feature |
-| `discrepancy_snapshot` | Required reference to the reviewed register state |
-| `acknowledge_public_access` | Must equal an explicit confirmation value |
-| `indexing_mode` | Fixed to `noindex` |
+Every locale-owned route provides:
 
-The workflow fails before upload when acknowledgement or review input is missing.
+- a unique localized title;
+- a concise localized description;
+- the correct `<html lang>`;
+- relative Open Graph and Twitter image metadata;
+- favicon and Apple Touch links resolved through `/oryxos/`;
+- language-counterpart metadata that does not require an approved public origin.
 
-## Release review gate
+The site-level `404.html` instead uses `lang="en"`, a unique bilingual title and description, bilingual recovery
+content, and no counterpart metadata. Both language recovery groups must be present in SSR output.
 
-An authorized maintainer verifies and records:
-
-- exact commit SHA and successful quality commands;
-- `/oryxos/` base and direct English/Chinese deep links;
-- claim/evidence and discrepancy review;
-- locale semantic parity;
-- keyboard, visible focus, 320–1440 layouts, and real 200% browser zoom;
-- WCAG 2.2 AA contrast and image accessibility;
-- external repository/license/community links;
-- absence of secrets, internal addresses, tracking, CMS, and Runtime API calls;
-- acceptance that the validation URL may be publicly accessible.
-
-## Validation indexing controls
-
-Every page emits:
-
-```html
-<meta name="robots" content="noindex,nofollow,noarchive">
-```
-
-`robots.txt` contains:
-
-```text
-User-agent: *
-Disallow: /
-```
-
-These controls reduce discovery but are not access control. No sensitive or private content may be deployed.
-
-## Page metadata
-
-Every public page has localized:
-
-- unique `<title>`;
-- non-empty description;
-- self-referencing canonical URL;
-- `hreflang="en"`, `hreflang="zh-Hans"`, and `hreflang="x-default"`;
-- Open Graph title, description, type, URL, image, image dimensions, image alt, and locale;
-- Twitter summary-large-image metadata;
-- correct `<html lang>`.
-
-Chinese pages canonicalize to themselves, not to English. `x-default` points to the English counterpart.
-
-## Structured data
-
-- Home may use `SoftwareSourceCode` only with verified fields.
-- Documentation may use `BreadcrumbList`.
-- Do not publish ratings, customers, enterprise adoption, security certification, or unverified software versions.
-- Do not publish a `SearchAction` because the first release has no site search.
+The prototype must not generate placeholder public canonical URLs, a production sitemap hostname, ratings,
+customers, security certifications, or unverified software versions.
 
 ## Project-path validation
 
-Automated checks fail when built HTML or assets:
+Automated checks fail when:
 
-- bypass `/oryxos/` with an invalid root-absolute site URL;
-- contain missing favicon, social, diagram, script, or stylesheet resources;
-- fail direct deep-link access in preview;
-- omit `404.html` or required metadata;
-- send a locale switch to a non-equivalent destination.
+- any required source or built route is missing;
+- built internal links or static assets bypass `/oryxos/` incorrectly;
+- any generated page, stylesheet, script, image, favicon, or social image fails to load;
+- `404.html` is missing or lacks locale-aware recovery links;
+- a locale switch reaches a non-equivalent route;
+- body-level horizontal overflow occurs at the required viewport matrix;
+- an internal link crawl reports a missing route or fragment.
 
-## Promotion to formal publication
+## Local prototype review
 
-Re-enabling automatic publication, changing robots to index/follow, or treating the Pages site as a formal release
-requires a separate reviewed Feature after all formal-publication discrepancy blockers are resolved. Feature 002
-does not perform that promotion.
+Completion requires a repository record containing:
+
+- exact source ref or working-tree state;
+- build and test results;
+- bilingual route review;
+- keyboard and focus review;
+- responsive and real 200% zoom review;
+- draft-notice and conservative-copy review;
+- brand originality and asset consistency review;
+- brand creator or generation process;
+- third-party font/tool license statement;
+- asset legibility results at navigation, favicon, and social-card sizes;
+- unresolved discrepancy snapshot;
+- decision: `approved-for-prototype`, `changes-requested`, or `rejected`.
+
+No review decision in this Feature authorizes public deployment.
