@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "002-oryxos-website-local-review-2026-08-17",
+  "sourceRef": "working-tree@084eecd",
+  "reviewedAt": "2026-08-17T13:54:05+08:00",
+  "buildResult": "passed",
+  "routeResult": "passed",
+  "accessibilityResult": "passed",
+  "responsiveResult": "passed",
+  "bilingualResult": "passed",
+  "draftLabelResult": "passed",
+  "keyboardFocusResult": "passed",
+  "runtimeIndependenceResult": "passed",
+  "workflowPolicyResult": "passed",
+  "browserMatrix": {
+    "chromium": {
+      "result": "passed",
+      "testsPassed": 42,
+      "testsFailed": 0
+    }
+  },
+  "browserApprovalPolicy": "Locked Playwright Chromium validation only; Firefox is not required for this visual-prototype approval.",
+  "externalLinksResult": "passed",
+  "externalLinkNotes": [
+    "The project owner explicitly identified https://github.com/KI9I9/oryxos as the target OryxOS repository for this website.",
+    "The target Issues destination https://github.com/KI9I9/oryxos/issues returned HTTP 200 during Agent verification.",
+    "The previous https://github.com/oryx-labs/oryxos/discussions destination returned HTTP 404 and was removed instead of being redirected to an unverified Discussions page.",
+    "Repository, Issues, owner, and license destinations now consistently use the KI9I9 repository owner. The local LICENSE file contains Apache License 2.0 text.",
+    "Manual checks outside the Agent sandbox returned HTTP 200 for the target repository, Issues, owner profile, target LICENSE page, and ASF information page."
+  ],
+  "brandCreator": "Original geometric SVG assets created by the Feature 002 implementation process without consulting retired website assets.",
+  "brandGenerationProcess": "Hand-authored SVG sources are validated by website/scripts/export-assets.mjs and the six required raster outputs are exported deterministically with @resvg/resvg-js 2.6.2. Rasterized social lettering uses original geometric vector paths; text-bearing wordmarks and diagrams remain SVG-only so PNG generation does not depend on machine-specific fonts.",
+  "thirdPartyLicenses": [
+    "No external web fonts are loaded by the website; browser presentation uses local system font stacks.",
+    "@resvg/resvg-js 2.6.2 is licensed under MPL-2.0 and is used for SVG-to-PNG export.",
+    "VitePress 1.6.4 is licensed under MIT and is used for static-site generation.",
+    "@playwright/test 1.62.1 is licensed under Apache-2.0 and is used for browser validation."
+  ],
+  "assetLegibilityResult": "passed",
+  "assetIssues": [],
+  "assetLegibilityChecks": {
+    "socialCards1200x630": "passed - geometric ORYXOS lettering and EN/ZH locale markers are clear with no missing glyphs or font substitution",
+    "logoMark512": "passed - color blocks, central field, and directional accents remain distinct",
+    "appleTouch180": "passed - mark remains centered and clearly separated from the rounded background",
+    "favicon32": "passed - core two-sided mark remains recognizable",
+    "favicon16": "passed - small but recognizable two-color silhouette with no text dependency"
+  },
+  "discrepancySnapshot": {
+    "open": [
+      "DISC-POSITIONING-001",
+      "DISC-MATURITY-001",
+      "DISC-VERSION-001",
+      "DISC-CLI-001",
+      "DISC-API-001",
+      "DISC-CAPABILITY-001",
+      "DISC-BUILD-001",
+      "DISC-ASSET-001",
+      "DISC-GOVERNANCE-001"
+    ],
+    "resolved": [
+      "DISC-DEPLOYMENT-001"
+    ],
+    "publicDeploymentAllowed": false
+  },
+  "visualDecision": "approved-for-prototype",
+  "notes": [
+    "A clean npm ci installed 207 locked packages successfully with Node.js 24.11.0 and npm 11.6.1.",
+    "The complete quality run after the repository-link correction passed 27 script tests, 10 workflow-policy tests, content validation, six deterministic PNG exports, asset verification, type checking, production build validation, and 42 Chromium tests.",
+    "Representative axe checks passed for both locales, required viewports from 320 through 1440 CSS pixels have no body-level horizontal overflow, and the 200 percent equivalent layout check passed.",
+    "Draft notices, locale counterpart routing, no-JavaScript content, bilingual 404 recovery, keyboard reachability, and non-deployment policy checks passed.",
+    "Replacement characters in the system architecture and ReAct loop SVG sources were replaced with ASCII separators.",
+    "Font-dependent raster exports were removed. Six required font-independent PNG assets were regenerated and structurally verified; a new unit test rejects future raster outputs whose SVG source contains text.",
+    "Website repository, Issues, owner, and License URLs now target KI9I9/oryxos; the invalid legacy Discussions destination and all related page-action references were removed.",
+    "The locked Chromium local-review suite passed all 42 tests after the browser approval matrix was revised to Chromium-only.",
+    "This approved-for-prototype decision confirms the local visual prototype only and does not authorize public deployment."
+  ]
+}

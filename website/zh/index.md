@@ -1,7 +1,14 @@
 ---
 layout: home
-title: OryxOS — 企业级 Agent OS
-description: 基于 Java 的企业级 Agent OS，在自己的基础设施上运行多个 AI Agent
+pageId: home
+kind: core
+contentStatus: prototype
+title: OryxOS - Java 原生 Agent 运行时内核
+description: 面向 Java 原生、自托管、Pre-alpha Agent OS 运行时内核的本地视觉雏形。
+sidebar: false
+aside: false
+outline: false
+markdownStyles: false
 ---
 
-<Home />
+<HomeLanding />

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 128" role="img" aria-labelledby="title description">
+  <title id="title">OryxOS horizontal lockup</title>
+  <desc id="description">The OryxOS angular mark followed by the OryxOS wordmark.</desc>
+  <rect width="560" height="128" fill="none"/>
+  <g transform="translate(0 0)">
+    <path d="M20 25h36L43 43H31v42h12l13 18H20L8 91V37z" fill="#12211f"/>
+    <path d="M108 25H72l13 18h12v42H85l-13 18h36l12-12V37z" fill="#145ee8"/>
+    <rect x="50" y="50" width="28" height="28" fill="#087f71"/>
+    <path d="M56 18h16l-8 19zM56 110h16l-8-19z" fill="#d8672f"/>
+  </g>
+  <text x="148" y="84" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-5">Oryx</text>
+  <text x="326" y="84" fill="#145ee8" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-5">OS</text>
+  <text x="438" y="56" fill="#087f71" font-family="monospace" font-size="12" font-weight="700" letter-spacing="2">AGENT</text>
+  <text x="438" y="76" fill="#087f71" font-family="monospace" font-size="12" font-weight="700" letter-spacing="2">RUNTIME</text>
+</svg>

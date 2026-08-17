@@ -1,0 +1,36 @@
+name: Build website prototype artifact
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-artifact:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Use repository Node version
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: website/.nvmrc
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Validate prototype
+        run: npm run test:quality
+      - name: Upload ordinary build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: oryxos-website-prototype
+          path: website/.vitepress/dist
+          if-no-files-found: error
+          retention-days: 7

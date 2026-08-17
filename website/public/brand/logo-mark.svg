@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title description">
+  <title id="title">OryxOS logo mark</title>
+  <desc id="description">An angular O formed by two opposing runtime paths and a central node.</desc>
+  <rect width="128" height="128" fill="#f4f3ed"/>
+  <path d="M20 25h36L43 43H31v42h12l13 18H20L8 91V37z" fill="#12211f"/>
+  <path d="M108 25H72l13 18h12v42H85l-13 18h36l12-12V37z" fill="#145ee8"/>
+  <rect x="50" y="50" width="28" height="28" fill="#087f71"/>
+  <path d="M56 18h16l-8 19zM56 110h16l-8-19z" fill="#d8672f"/>
+</svg>

@@ -1,0 +1,40 @@
+.locale-switcher {
+  display: inline-flex;
+  min-height: 36px;
+  min-width: 114px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-left: 1rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--oryx-line-strong);
+  color: var(--oryx-ink);
+  font-family: var(--oryx-font-mono);
+  font-size: 0.65rem;
+  text-decoration: none;
+}
+
+.locale-switcher:hover {
+  border-color: var(--oryx-blue);
+  background: var(--oryx-blue);
+  color: #ffffff;
+}
+
+.locale-switcher strong {
+  font-size: 0.72rem;
+}
+
+/* The manifest-backed switcher replaces VitePress's route-derived locale UI. */
+.VPNavBarTranslations,
+.VPNavScreenTranslations {
+  display: none !important;
+}
+
+html[lang="zh-Hans"] body {
+  font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", var(--oryx-font-sans);
+}
+
+html[lang="zh-Hans"] .vp-doc p,
+html[lang="zh-Hans"] .vp-doc li {
+  line-height: 1.85;
+}

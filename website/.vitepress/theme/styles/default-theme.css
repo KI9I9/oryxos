@@ -1,0 +1,94 @@
+.VPNav {
+  border-bottom: 1px solid var(--oryx-line);
+  background: rgba(244, 243, 237, 0.96);
+}
+
+.VPNavBar.has-sidebar .content-body,
+.VPNavBar .content-body {
+  background: transparent !important;
+}
+
+.VPNavBarTitle .title {
+  min-width: 150px;
+  border-bottom: 0;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.VPNavBarTitle .logo {
+  width: 28px;
+  height: 28px;
+}
+
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup .text {
+  font-family: var(--oryx-font-mono);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.VPSidebar {
+  border-right: 1px solid var(--oryx-line);
+  background: #eeeee8;
+}
+
+.VPSidebarItem .text {
+  line-height: 1.45;
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-family: var(--oryx-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: var(--oryx-content-reading);
+}
+
+.vp-doc h1 {
+  margin-top: 1rem;
+  color: var(--oryx-ink);
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.vp-doc h2 {
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--oryx-line);
+  padding-top: 1.5rem;
+  color: var(--oryx-ink);
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  letter-spacing: -0.035em;
+}
+
+.vp-doc h3 {
+  color: var(--oryx-ink);
+  letter-spacing: -0.02em;
+}
+
+.vp-doc p,
+.vp-doc li {
+  color: var(--oryx-ink-muted);
+  line-height: 1.75;
+}
+
+.vp-doc a {
+  color: var(--oryx-blue-dark);
+  font-weight: 650;
+}
+
+.VPFooter {
+  border-top: 1px solid var(--oryx-line);
+  background: #e9e9e2;
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  color: var(--oryx-ink-muted);
+}

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+  <title id="title">OryxOS single-node architecture visual draft</title>
+  <desc id="description">A Profile-defined Agent connects to a runtime kernel with provider, tool, memory, CLI, and REST boundaries.</desc>
+  <rect width="1200" height="700" fill="#f4f3ed"/>
+  <rect x="42" y="42" width="1116" height="616" fill="#ffffff" stroke="#12211f" stroke-width="2"/>
+  <rect x="42" y="42" width="1116" height="52" fill="#12211f"/>
+  <text x="66" y="75" fill="#ffffff" font-family="monospace" font-size="16" font-weight="700" letter-spacing="2">ORYXOS / SINGLE NODE / PROVISIONAL SYSTEM MAP</text>
+
+  <rect x="84" y="145" width="260" height="150" fill="#eef2ff" stroke="#145ee8" stroke-width="3"/>
+  <text x="110" y="178" fill="#145ee8" font-family="monospace" font-size="14" font-weight="700">01 / IDENTITY</text>
+  <text x="110" y="222" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">YAML Profile</text>
+  <text x="110" y="252" fill="#53615e" font-family="Arial, Helvetica, sans-serif" font-size="17">completely defines one Agent</text>
+  <text x="110" y="276" fill="#53615e" font-family="Arial, Helvetica, sans-serif" font-size="17">may reference behavioral Skill</text>
+
+  <path d="M344 220h100" stroke="#087f71" stroke-width="4"/>
+  <path d="M430 208l18 12-18 12" fill="none" stroke="#087f71" stroke-width="4"/>
+
+  <rect x="448" y="126" width="404" height="338" fill="#e9ece8" stroke="#12211f" stroke-width="3"/>
+  <text x="476" y="160" fill="#087f71" font-family="monospace" font-size="14" font-weight="700">02 / RUNTIME KERNEL</text>
+  <rect x="486" y="192" width="328" height="86" fill="#145ee8"/>
+  <text x="514" y="226" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Orchestration boundary</text>
+  <text x="514" y="253" fill="#dce7ff" font-family="Arial, Helvetica, sans-serif" font-size="16">context / intended loop / lifecycle</text>
+  <rect x="486" y="300" width="96" height="118" fill="#ffffff" stroke="#87938f"/>
+  <rect x="602" y="300" width="96" height="118" fill="#ffffff" stroke="#87938f"/>
+  <rect x="718" y="300" width="96" height="118" fill="#ffffff" stroke="#87938f"/>
+  <text x="503" y="334" fill="#087f71" font-family="monospace" font-size="12">03A</text>
+  <text x="503" y="378" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Provider</text>
+  <text x="619" y="334" fill="#087f71" font-family="monospace" font-size="12">03B</text>
+  <text x="619" y="378" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Tool</text>
+  <text x="735" y="334" fill="#087f71" font-family="monospace" font-size="12">03C</text>
+  <text x="735" y="378" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Memory</text>
+
+  <path d="M852 220h86" stroke="#087f71" stroke-width="4"/>
+  <path d="M924 208l18 12-18 12" fill="none" stroke="#087f71" stroke-width="4"/>
+  <rect x="942" y="145" width="174" height="310" fill="#fff8d9" stroke="#d8a624" stroke-width="2"/>
+  <text x="966" y="178" fill="#8d571c" font-family="monospace" font-size="14" font-weight="700">04 / EDGES</text>
+  <rect x="966" y="210" width="126" height="72" fill="#ffffff" stroke="#87938f"/>
+  <text x="990" y="253" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">CLI form</text>
+  <rect x="966" y="302" width="126" height="72" fill="#ffffff" stroke="#87938f"/>
+  <text x="982" y="345" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">REST form</text>
+  <text x="966" y="414" fill="#683416" font-family="Arial, Helvetica, sans-serif" font-size="14">behavior not asserted</text>
+
+  <rect x="84" y="510" width="1032" height="92" fill="#12211f"/>
+  <text x="110" y="546" fill="#ffcd4d" font-family="monospace" font-size="14" font-weight="700">PROTOTYPE BOUNDARY</text>
+  <text x="110" y="579" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="20">Visual relationships only / no Runtime API / no real capability states / no public deployment</text>
+</svg>

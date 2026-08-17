@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-labelledby="title description">
+  <title id="title">Provisional ReAct loop visual model</title>
+  <desc id="description">A circular visual sequence from observation to reasoning, bounded action, result, and the next observation.</desc>
+  <rect width="1000" height="600" fill="#f4f3ed"/>
+  <rect x="36" y="36" width="928" height="528" fill="#ffffff" stroke="#12211f" stroke-width="2"/>
+  <text x="68" y="78" fill="#087f71" font-family="monospace" font-size="15" font-weight="700" letter-spacing="2">REACT / INTENDED ORCHESTRATION FORM</text>
+
+  <circle cx="500" cy="300" r="96" fill="#145ee8"/>
+  <text x="454" y="288" fill="#dce7ff" font-family="monospace" font-size="13" font-weight="700">RUNTIME</text>
+  <text x="451" y="325" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Kernel</text>
+
+  <rect x="405" y="112" width="190" height="82" fill="#e9ece8" stroke="#12211f"/>
+  <text x="431" y="143" fill="#087f71" font-family="monospace" font-size="12">01</text>
+  <text x="431" y="171" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Observation</text>
+
+  <rect x="704" y="259" width="190" height="82" fill="#eef2ff" stroke="#145ee8"/>
+  <text x="730" y="290" fill="#145ee8" font-family="monospace" font-size="12">02</text>
+  <text x="730" y="318" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Reasoning</text>
+
+  <rect x="405" y="406" width="190" height="82" fill="#fff3e8" stroke="#d8672f"/>
+  <text x="431" y="437" fill="#8d571c" font-family="monospace" font-size="12">03</text>
+  <text x="431" y="465" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Bounded action</text>
+
+  <rect x="106" y="259" width="190" height="82" fill="#e7f3f0" stroke="#087f71"/>
+  <text x="132" y="290" fill="#087f71" font-family="monospace" font-size="12">04</text>
+  <text x="132" y="318" fill="#12211f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Result</text>
+
+  <path d="M595 154c116 20 160 56 192 105" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M780 246l13 20-23-1" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M799 341c-27 69-91 105-204 106" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M609 437l-16 11 17 10" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M405 447c-111-5-170-39-199-106" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M217 354l-16-16-5 22" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M201 259c32-61 91-94 204-105" fill="none" stroke="#12211f" stroke-width="3"/>
+  <path d="M390 146l17 8-14 13" fill="none" stroke="#12211f" stroke-width="3"/>
+
+  <text x="68" y="532" fill="#53615e" font-family="Arial, Helvetica, sans-serif" font-size="16">Illustrative sequence only / stop conditions, budgets, retries, and failure behavior require verification</text>
+</svg>

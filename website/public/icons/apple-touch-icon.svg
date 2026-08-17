@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="OryxOS">
+  <rect width="180" height="180" rx="24" fill="#f4f3ed"/>
+  <path d="M29 35h51L61 60H45v60h16l19 25H29l-17-17V52z" fill="#12211f"/>
+  <path d="M151 35h-51l19 25h16v60h-16l-19 25h51l17-17V52z" fill="#145ee8"/>
+  <rect x="70" y="70" width="40" height="40" fill="#087f71"/>
+  <path d="M79 24h22L90 50zM79 156h22l-11-26z" fill="#d8672f"/>
+</svg>

@@ -1,0 +1,46 @@
+name: Validate website prototype
+
+on:
+  pull_request:
+    paths:
+      - "website/**"
+      - ".github/workflows/website-*.yml"
+  push:
+    paths:
+      - "website/**"
+      - ".github/workflows/website-*.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Use repository Node version
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: website/.nvmrc
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Validate prototype
+        run: npm run test:quality
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-validation-report
+          path: |
+            website/playwright-report
+            website/test-results
+          if-no-files-found: ignore
+          retention-days: 7

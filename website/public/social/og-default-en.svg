@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">OryxOS visual prototype social card</title>
+  <desc id="description">A font-independent OryxOS geometric wordmark, English locale marker, single-node kernel diagram, and draft-status pattern.</desc>
+  <rect width="1200" height="630" fill="#f4f3ed"/>
+  <rect x="54" y="54" width="1092" height="522" fill="#ffffff" stroke="#12211f" stroke-width="2"/>
+  <rect x="54" y="54" width="1092" height="74" fill="#12211f"/>
+
+  <g transform="translate(82 72)" fill="none" stroke="#ffffff" stroke-linecap="square" stroke-linejoin="miter" stroke-width="6">
+    <path d="M0 0h26v38H0zM38 0h26v38H38zM76 0h26v38H76z"/>
+  </g>
+  <g transform="translate(1000 71)" fill="none" stroke="#ffcd4d" stroke-linecap="square" stroke-linejoin="miter" stroke-width="6">
+    <path d="M38 0H0v40h38M0 20h30M58 40V0l42 40V0"/>
+  </g>
+
+  <g transform="translate(84 174) scale(1.55)">
+    <path d="M20 25h36L43 43H31v42h12l13 18H20L8 91V37z" fill="#12211f"/>
+    <path d="M108 25H72l13 18h12v42H85l-13 18h36l12-12V37z" fill="#145ee8"/>
+    <rect x="50" y="50" width="28" height="28" fill="#00695c"/>
+    <path d="M56 18h16l-8 19zM56 110h16l-8-19z" fill="#d8672f"/>
+  </g>
+
+  <g transform="translate(330 169)" fill="none" stroke-linecap="square" stroke-linejoin="round" stroke-width="14">
+    <rect x="0" y="0" width="72" height="110" rx="18" stroke="#12211f"/>
+    <path d="M108 110V0h48c24 0 34 12 34 28s-10 28-34 28h-48M153 56l43 54" stroke="#12211f"/>
+    <path d="M228 0l38 52 38-52M266 52v58" stroke="#12211f"/>
+    <path d="M338 0l76 110M414 0l-76 110" stroke="#12211f"/>
+    <rect x="448" y="0" width="72" height="110" rx="18" stroke="#145ee8"/>
+    <path d="M632 18C610-4 558-2 552 26c-4 20 12 28 40 34 29 6 43 14 38 34-7 27-58 29-82 4" stroke="#145ee8"/>
+  </g>
+
+  <g transform="translate(84 378)">
+    <rect width="298" height="126" fill="#eef2ff" stroke="#145ee8" stroke-width="2"/>
+    <circle cx="149" cy="63" r="22" fill="#145ee8"/>
+    <circle cx="89" cy="35" r="9" fill="#ffffff" stroke="#145ee8" stroke-width="4"/>
+    <circle cx="209" cy="35" r="9" fill="#ffffff" stroke="#145ee8" stroke-width="4"/>
+    <circle cx="89" cy="91" r="9" fill="#ffffff" stroke="#145ee8" stroke-width="4"/>
+    <circle cx="209" cy="91" r="9" fill="#ffffff" stroke="#145ee8" stroke-width="4"/>
+    <path d="M132 52L97 39M166 52l35-13M132 74L97 87M166 74l35 13" stroke="#145ee8" stroke-width="4"/>
+
+    <rect x="324" width="298" height="126" fill="#e7f3f0" stroke="#00695c" stroke-width="2"/>
+    <rect x="416" y="28" width="114" height="72" fill="#ffffff" stroke="#00695c" stroke-width="4"/>
+    <rect x="440" y="44" width="66" height="40" fill="#00695c"/>
+
+    <rect x="648" width="384" height="126" fill="#fff3e8" stroke="#d8672f" stroke-width="2"/>
+    <path d="M710 64h210" stroke="#12211f" stroke-width="8"/>
+    <circle cx="710" cy="64" r="17" fill="#d8672f"/>
+    <circle cx="780" cy="64" r="13" fill="#ffffff" stroke="#12211f" stroke-width="4"/>
+    <circle cx="850" cy="64" r="13" fill="#ffffff" stroke="#12211f" stroke-width="4"/>
+    <circle cx="920" cy="64" r="13" fill="#ffffff" stroke="#12211f" stroke-width="4"/>
+    <path d="M963 44l26 20-26 20" fill="none" stroke="#d8672f" stroke-width="7"/>
+  </g>
+
+  <g transform="translate(84 532)">
+    <rect width="1032" height="18" fill="#12211f"/>
+    <rect width="206" height="18" fill="#ffcd4d"/>
+    <path d="M236 0l18 18M272 0l18 18M308 0l18 18M344 0l18 18" stroke="#ffffff" stroke-width="4"/>
+  </g>
+</svg>

@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "owner": "OryxOS website visual prototype",
+  "generationTool": "@resvg/resvg-js",
+  "assets": [
+    {
+      "assetId": "brand-logo-mark",
+      "kind": "logo-mark",
+      "sourcePath": "public/brand/logo-mark.svg",
+      "outputPaths": ["public/brand/logo-mark-512.png"],
+      "outputs": [{ "path": "public/brand/logo-mark-512.png", "width": 512, "height": 512 }],
+      "locale": null,
+      "dimensions": { "width": 512, "height": 512 },
+      "altKey": "brand.logoMark",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Created from geometric paths for Feature 002 without referencing retired website assets."
+    },
+    {
+      "assetId": "brand-wordmark-en",
+      "kind": "wordmark",
+      "sourcePath": "public/brand/wordmark-en.svg",
+      "outputPaths": [],
+      "outputs": [],
+      "locale": "en",
+      "dimensions": null,
+      "altKey": "brand.wordmark",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Created for the visual prototype with system-font SVG text and original line details."
+    },
+    {
+      "assetId": "brand-lockup-horizontal",
+      "kind": "lockup",
+      "sourcePath": "public/brand/lockup-horizontal.svg",
+      "outputPaths": [],
+      "outputs": [],
+      "locale": "en",
+      "dimensions": null,
+      "altKey": "brand.horizontalLockup",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Combines the original mark and prototype wordmark without retired-site references."
+    },
+    {
+      "assetId": "brand-mark-monochrome",
+      "kind": "logo-mark",
+      "sourcePath": "public/brand/logo-mark-monochrome.svg",
+      "outputPaths": [],
+      "outputs": [],
+      "locale": null,
+      "dimensions": null,
+      "altKey": "brand.logoMarkMonochrome",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Single-color derivative of the original Feature 002 geometric mark."
+    },
+    {
+      "assetId": "icon-favicon-svg",
+      "kind": "favicon",
+      "sourcePath": "public/icons/favicon.svg",
+      "outputPaths": ["public/icons/favicon-32x32.png", "public/icons/favicon-16x16.png"],
+      "outputs": [
+        { "path": "public/icons/favicon-32x32.png", "width": 32, "height": 32 },
+        { "path": "public/icons/favicon-16x16.png", "width": 16, "height": 16 }
+      ],
+      "locale": null,
+      "dimensions": null,
+      "altKey": "brand.favicon",
+      "decorative": true,
+      "ownership": "project-original",
+      "originalityNote": "Simplified from the original geometric mark for small-size legibility."
+    },
+    {
+      "assetId": "icon-apple-touch",
+      "kind": "touch-icon",
+      "sourcePath": "public/icons/apple-touch-icon.svg",
+      "outputPaths": ["public/icons/apple-touch-icon.png"],
+      "outputs": [{ "path": "public/icons/apple-touch-icon.png", "width": 180, "height": 180 }],
+      "locale": null,
+      "dimensions": { "width": 180, "height": 180 },
+      "altKey": "brand.touchIcon",
+      "decorative": true,
+      "ownership": "project-original",
+      "originalityNote": "Original touch-icon treatment created for Feature 002."
+    },
+    {
+      "assetId": "social-default-en",
+      "kind": "social",
+      "sourcePath": "public/social/og-default-en.svg",
+      "outputPaths": ["public/social/og-default-en.png"],
+      "outputs": [{ "path": "public/social/og-default-en.png", "width": 1200, "height": 630 }],
+      "locale": "en",
+      "dimensions": { "width": 1200, "height": 630 },
+      "altKey": "social.default.en",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Original font-independent English social card built entirely from geometric SVG paths for the local visual prototype."
+    },
+    {
+      "assetId": "social-default-zh",
+      "kind": "social",
+      "sourcePath": "public/social/og-default-zh.svg",
+      "outputPaths": ["public/social/og-default-zh.png"],
+      "outputs": [{ "path": "public/social/og-default-zh.png", "width": 1200, "height": 630 }],
+      "locale": "zh-Hans",
+      "dimensions": { "width": 1200, "height": 630 },
+      "altKey": "social.default.zh",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Original font-independent Chinese-locale social card with a vector ZH marker and semantically equivalent localized metadata."
+    },
+    {
+      "assetId": "diagram-system-architecture",
+      "kind": "diagram",
+      "sourcePath": "public/diagrams/system-architecture.svg",
+      "outputPaths": [],
+      "outputs": [],
+      "locale": "en",
+      "dimensions": null,
+      "altKey": "diagram.systemArchitecture",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Original thin-line system map based only on current Feature contracts."
+    },
+    {
+      "assetId": "diagram-agent-definition",
+      "kind": "diagram",
+      "sourcePath": "public/diagrams/agent-skill-profile.svg",
+      "outputPaths": [],
+      "outputs": [],
+      "locale": "en",
+      "dimensions": null,
+      "altKey": "diagram.agentDefinition",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Original Constitution-aligned Agent, Profile, and Skill relationship diagram."
+    },
+    {
+      "assetId": "diagram-react-loop",
+      "kind": "diagram",
+      "sourcePath": "public/diagrams/react-loop.svg",
+      "outputPaths": [],
+      "outputs": [],
+      "locale": "en",
+      "dimensions": null,
+      "altKey": "diagram.reactLoop",
+      "decorative": false,
+      "ownership": "project-original",
+      "originalityNote": "Original provisional orchestration-loop diagram created for Feature 002."
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "prototypePolicy": {
+    "contentStatus": "prototype",
+    "publicDeploymentAllowed": false,
+    "runnableExamplesAllowed": false,
+    "availabilityClaimsAllowed": false,
+    "canonicalAgentConcept": {
+      "root": "One YAML Profile completely defines an Agent. The Profile may declare or reference a Skill that supplies behavioral instructions and is loaded as prompt context.",
+      "zh": "一个 YAML Profile 完全定义一个 Agent。Profile 可以声明或引用提供行为指令的 Skill，该 Skill 会作为 prompt context 加载。"
+    }
+  },
+  "draftNotices": {
+    "draft-visual-prototype": {
+      "root": "Draft visual prototype — content is provisional and not public documentation.",
+      "zh": "视觉原型草案 — 内容为暂定信息，并非公开项目文档。"
+    }
+  },
+  "provisionalSections": [
+    {
+      "key": "overview",
+      "rootLabel": "Overview",
+      "zhLabel": "概述",
+      "rootPurpose": "Introduces the intended subject and page hierarchy without asserting verified behavior.",
+      "zhPurpose": "介绍预期主题与页面层级，不声称相关行为已经得到验证。"
+    },
+    {
+      "key": "intended-design",
+      "rootLabel": "Intended design",
+      "zhLabel": "预期设计",
+      "rootPurpose": "Describes the provisional design direction that the visual prototype is evaluating.",
+      "zhPurpose": "描述视觉原型正在评估的临时设计方向。"
+    },
+    {
+      "key": "status-placeholder",
+      "rootLabel": "Status placeholder",
+      "zhLabel": "状态占位",
+      "rootPurpose": "Reserves a future evidence-backed status area without assigning an availability state now.",
+      "zhPurpose": "为未来基于证据的状态区域预留位置，目前不分配任何可用性状态。"
+    },
+    {
+      "key": "limitations-placeholder",
+      "rootLabel": "Limitations placeholder",
+      "zhLabel": "限制占位",
+      "rootPurpose": "Keeps unknowns and unverified behavior visible during prototype review.",
+      "zhPurpose": "在原型评审期间明确保留未知事项与未经验证的行为。"
+    },
+    {
+      "key": "related-navigation",
+      "rootLabel": "Related navigation",
+      "zhLabel": "相关导航",
+      "rootPurpose": "Connects readers to semantically related prototype pages and approved destinations.",
+      "zhPurpose": "将读者引导至语义相关的原型页面和已批准的外部目标。"
+    }
+  ],
+  "capabilityLegendPolicy": {
+    "definitionOnly": true,
+    "assignsStatesToRealCapabilities": false,
+    "rootNotice": "Legend definitions only. No real OryxOS capability receives a state in this visual prototype.",
+    "zhNotice": "仅展示图例定义。本视觉原型不会为任何真实 OryxOS 能力分配状态。"
+  },
+  "capabilityLegend": [
+    {
+      "state": "available",
+      "englishLabel": "Available",
+      "chineseLabel": "可用",
+      "descriptionKey": "legend-available-definition",
+      "englishDescription": "Reserved for behavior that a later publication review verifies with current evidence.",
+      "chineseDescription": "仅供后续发布评审使用，届时相关行为必须由当前证据验证。",
+      "shapeToken": "solid-circle",
+      "colorToken": "capability-available",
+      "isDefinitionOnly": true,
+      "assignedCapabilities": []
+    },
+    {
+      "state": "in-development",
+      "englishLabel": "In development",
+      "chineseLabel": "开发中",
+      "descriptionKey": "legend-in-development-definition",
+      "englishDescription": "Reserved for active work that is not yet presented as complete or usable.",
+      "chineseDescription": "用于仍在推进、尚不能描述为完成或可使用的工作。",
+      "shapeToken": "half-filled-circle",
+      "colorToken": "capability-in-development",
+      "isDefinitionOnly": true,
+      "assignedCapabilities": []
+    },
+    {
+      "state": "planned",
+      "englishLabel": "Planned",
+      "chineseLabel": "已规划",
+      "descriptionKey": "legend-planned-definition",
+      "englishDescription": "Reserved for an intended direction that has not entered verified implementation.",
+      "chineseDescription": "用于尚未进入可验证实现阶段的预期方向。",
+      "shapeToken": "outlined-square",
+      "colorToken": "capability-planned",
+      "isDefinitionOnly": true,
+      "assignedCapabilities": []
+    },
+    {
+      "state": "vision",
+      "englishLabel": "Vision",
+      "chineseLabel": "愿景",
+      "descriptionKey": "legend-vision-definition",
+      "englishDescription": "Reserved for long-term exploration rather than a delivery commitment.",
+      "chineseDescription": "用于长期探索方向，不代表交付承诺。",
+      "shapeToken": "dashed-diamond",
+      "colorToken": "capability-vision",
+      "isDefinitionOnly": true,
+      "assignedCapabilities": []
+    }
+  ],
+  "roadmapVisualStages": [
+    {
+      "key": "current-foundations",
+      "rootLabel": "Current foundations",
+      "zhLabel": "当前基础",
+      "rootDescription": "A provisional visual horizon for foundational project structure and review boundaries.",
+      "zhDescription": "用于展示项目基础结构与评审边界的临时视觉阶段。",
+      "capabilityState": null,
+      "isDeliveryCommitment": false
+    },
+    {
+      "key": "active-runtime-kernel",
+      "rootLabel": "Runtime-kernel focus",
+      "zhLabel": "运行时内核重点",
+      "rootDescription": "A provisional visual horizon describing the current single-node runtime-kernel focus without assigning capability states.",
+      "zhDescription": "描述当前单节点运行时内核重点的临时视觉阶段，不分配能力状态。",
+      "capabilityState": null,
+      "isDeliveryCommitment": false
+    },
+    {
+      "key": "later-enterprise-hardening",
+      "rootLabel": "Later hardening",
+      "zhLabel": "后续强化",
+      "rootDescription": "A provisional later horizon whose scope and evidence requirements remain subject to future planning.",
+      "zhDescription": "临时的后续阶段，其范围与证据要求仍需未来规划。",
+      "capabilityState": null,
+      "isDeliveryCommitment": false
+    },
+    {
+      "key": "distributed-agent-os-direction",
+      "rootLabel": "Distributed Agent OS direction",
+      "zhLabel": "分布式 Agent OS 长期方向",
+      "rootDescription": "A prose-only long-term direction, not a capability-state assignment or delivery promise.",
+      "zhDescription": "仅以文字表达的长期方向，不是能力状态分配或交付承诺。",
+      "capabilityState": null,
+      "isDeliveryCommitment": false
+    }
+  ],
+  "primaryActions": [
+    {
+      "key": "explore-architecture",
+      "targetType": "page",
+      "targetPageId": "architecture",
+      "rootLabel": "Explore architecture",
+      "zhLabel": "探索架构"
+    },
+    {
+      "key": "open-documentation",
+      "targetType": "page",
+      "targetPageId": "docs-index",
+      "rootLabel": "Open documentation",
+      "zhLabel": "打开文档"
+    },
+    {
+      "key": "open-roadmap",
+      "targetType": "page",
+      "targetPageId": "roadmap",
+      "rootLabel": "Open roadmap",
+      "zhLabel": "打开路线图"
+    },
+    {
+      "key": "read-design-principles",
+      "targetType": "page",
+      "targetPageId": "docs-design-principles",
+      "rootLabel": "Read design principles",
+      "zhLabel": "阅读设计原则"
+    },
+    {
+      "key": "read-project-status",
+      "targetType": "page",
+      "targetPageId": "docs-project-status",
+      "rootLabel": "Read project status",
+      "zhLabel": "阅读项目状态"
+    },
+    {
+      "key": "open-community",
+      "targetType": "page",
+      "targetPageId": "community",
+      "rootLabel": "Open community",
+      "zhLabel": "打开社区"
+    },
+    {
+      "key": "read-what-is-oryxos",
+      "targetType": "page",
+      "targetPageId": "docs-what-is-oryxos",
+      "rootLabel": "Read what OryxOS is",
+      "zhLabel": "了解什么是 OryxOS"
+    },
+    {
+      "key": "read-contributing",
+      "targetType": "page",
+      "targetPageId": "docs-contributing",
+      "rootLabel": "Read contributing guidance",
+      "zhLabel": "阅读参与贡献说明"
+    },
+    {
+      "key": "read-why-java",
+      "targetType": "page",
+      "targetPageId": "docs-why-java",
+      "rootLabel": "Read why Java",
+      "zhLabel": "阅读为什么选择 Java"
+    },
+    {
+      "key": "read-react-loop",
+      "targetType": "page",
+      "targetPageId": "docs-react-loop",
+      "rootLabel": "Read ReAct loop design",
+      "zhLabel": "阅读 ReAct 循环设计"
+    },
+    {
+      "key": "read-rest-api",
+      "targetType": "page",
+      "targetPageId": "docs-rest-api",
+      "rootLabel": "Read REST API design",
+      "zhLabel": "阅读 REST API 设计"
+    },
+    {
+      "key": "read-provider",
+      "targetType": "page",
+      "targetPageId": "docs-provider",
+      "rootLabel": "Read Provider design",
+      "zhLabel": "阅读 Provider 设计"
+    },
+    {
+      "key": "read-tool",
+      "targetType": "page",
+      "targetPageId": "docs-tool",
+      "rootLabel": "Read Tool design",
+      "zhLabel": "阅读 Tool 设计"
+    },
+    {
+      "key": "read-memory",
+      "targetType": "page",
+      "targetPageId": "docs-memory",
+      "rootLabel": "Read Memory design",
+      "zhLabel": "阅读 Memory 设计"
+    },
+    {
+      "key": "read-skill-profile",
+      "targetType": "page",
+      "targetPageId": "docs-skill-profile",
+      "rootLabel": "Read Skill and Profile design",
+      "zhLabel": "阅读 Skill 与 Profile 设计"
+    },
+    {
+      "key": "read-cli",
+      "targetType": "page",
+      "targetPageId": "docs-cli",
+      "rootLabel": "Read CLI design",
+      "zhLabel": "阅读 CLI 设计"
+    },
+    {
+      "key": "read-build-from-source",
+      "targetType": "page",
+      "targetPageId": "docs-build-from-source",
+      "rootLabel": "Review build page",
+      "zhLabel": "查看构建页面"
+    },
+    {
+      "key": "open-home",
+      "targetType": "page",
+      "targetPageId": "home",
+      "rootLabel": "Return home",
+      "zhLabel": "返回首页"
+    },
+    {
+      "key": "open-github-repository",
+      "targetType": "external",
+      "externalLinkKey": "github-repository",
+      "rootLabel": "Open GitHub repository",
+      "zhLabel": "打开 GitHub 仓库"
+    },
+    {
+      "key": "open-github-issues",
+      "targetType": "external",
+      "externalLinkKey": "github-issues",
+      "rootLabel": "Open GitHub issues",
+      "zhLabel": "打开 GitHub Issues"
+    }
+  ],
+  "socialImageAlts": {
+    "social-default-en": {
+      "root": "OryxOS pre-alpha Java Agent OS visual prototype",
+      "zh": "OryxOS 前阿尔法阶段 Java Agent OS 视觉原型英文社交卡片"
+    },
+    "social-default-zh": {
+      "root": "OryxOS pre-alpha Java Agent OS visual prototype in Simplified Chinese",
+      "zh": "OryxOS 前阿尔法阶段 Java Agent OS 视觉原型"
+    }
+  }
+}

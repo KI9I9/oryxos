@@ -1,0 +1,1365 @@
+{
+  "schemaVersion": 1,
+  "locales": [
+    {
+      "id": "root",
+      "languageTag": "en",
+      "socialLocale": "en_US",
+      "routePrefix": "/",
+      "label": "English",
+      "defaultTitle": "OryxOS - Java Agent OS Visual Prototype",
+      "defaultDescription": "A local visual prototype for an open, self-hosted Agent OS foundation oriented toward Java teams.",
+      "fallbackPageId": "translation-unavailable",
+      "defaultOgImage": "social-default-en"
+    },
+    {
+      "id": "zh",
+      "languageTag": "zh-Hans",
+      "socialLocale": "zh_CN",
+      "routePrefix": "/zh/",
+      "label": "简体中文",
+      "defaultTitle": "OryxOS - 面向 Java 团队的 Agent OS 视觉原型",
+      "defaultDescription": "面向 Java 团队的开放、自托管 Agent OS 基础项目本地视觉原型。",
+      "fallbackPageId": "translation-unavailable",
+      "defaultOgImage": "social-default-zh"
+    }
+  ],
+  "templates": [
+    {
+      "templateId": "documentation-prototype",
+      "noticeKey": "draft-visual-prototype",
+      "sectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "allowsRunnableExamples": false,
+      "allowsAvailabilityClaims": false
+    }
+  ],
+  "pages": [
+    {
+      "pageId": "home",
+      "locale": "root",
+      "kind": "core",
+      "topicGroup": "core",
+      "route": "/",
+      "sourcePath": "index.md",
+      "title": "OryxOS - Java Agent OS Visual Prototype",
+      "description": "Explore a pre-alpha visual prototype for an open, self-hosted Agent OS foundation oriented toward Java teams.",
+      "counterpartPageId": "home",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "explore-architecture",
+        "open-documentation"
+      ],
+      "requiredSectionKeys": [
+        "hero",
+        "positioning",
+        "agent-os-comparison",
+        "capability-legend",
+        "architecture-preview",
+        "long-term-direction",
+        "primary-actions"
+      ],
+      "capabilityLegendStateKeys": [
+        "available",
+        "in-development",
+        "planned",
+        "vision"
+      ],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "home",
+      "locale": "zh",
+      "kind": "core",
+      "topicGroup": "core",
+      "route": "/zh/",
+      "sourcePath": "zh/index.md",
+      "title": "OryxOS - 面向 Java 团队的 Agent OS 视觉原型",
+      "description": "探索面向 Java 团队的开放、自托管 Agent OS 基础项目前阿尔法阶段视觉原型。",
+      "counterpartPageId": "home",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "explore-architecture",
+        "open-documentation"
+      ],
+      "requiredSectionKeys": [
+        "hero",
+        "positioning",
+        "agent-os-comparison",
+        "capability-legend",
+        "architecture-preview",
+        "long-term-direction",
+        "primary-actions"
+      ],
+      "capabilityLegendStateKeys": [
+        "available",
+        "in-development",
+        "planned",
+        "vision"
+      ],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "architecture",
+      "locale": "root",
+      "kind": "core",
+      "topicGroup": "core",
+      "route": "/architecture",
+      "sourcePath": "architecture.md",
+      "title": "Architecture - OryxOS",
+      "description": "Review the provisional Agent definition, module boundaries, and design constraints proposed for the OryxOS prototype.",
+      "counterpartPageId": "architecture",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-roadmap",
+        "read-design-principles"
+      ],
+      "requiredSectionKeys": [
+        "agent-definition",
+        "module-map",
+        "design-boundaries",
+        "capability-legend",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [
+        "available",
+        "in-development",
+        "planned",
+        "vision"
+      ],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "architecture",
+      "locale": "zh",
+      "kind": "core",
+      "topicGroup": "core",
+      "route": "/zh/architecture",
+      "sourcePath": "zh/architecture.md",
+      "title": "架构 - OryxOS",
+      "description": "审阅 OryxOS 原型提出的 Agent 定义、模块边界与设计约束。",
+      "counterpartPageId": "architecture",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-roadmap",
+        "read-design-principles"
+      ],
+      "requiredSectionKeys": [
+        "agent-definition",
+        "module-map",
+        "design-boundaries",
+        "capability-legend",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [
+        "available",
+        "in-development",
+        "planned",
+        "vision"
+      ],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "roadmap",
+      "locale": "root",
+      "kind": "core",
+      "topicGroup": "core",
+      "route": "/roadmap",
+      "sourcePath": "roadmap.md",
+      "title": "Roadmap - OryxOS",
+      "description": "Review provisional visual horizons for foundations, runtime-kernel work, later hardening, and long-term direction.",
+      "counterpartPageId": "roadmap",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-project-status",
+        "open-community"
+      ],
+      "requiredSectionKeys": [
+        "status-boundary",
+        "visual-stages",
+        "long-term-direction",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [
+        "current-foundations",
+        "active-runtime-kernel",
+        "later-enterprise-hardening",
+        "distributed-agent-os-direction"
+      ],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "roadmap",
+      "locale": "zh",
+      "kind": "core",
+      "topicGroup": "core",
+      "route": "/zh/roadmap",
+      "sourcePath": "zh/roadmap.md",
+      "title": "路线图 - OryxOS",
+      "description": "审阅基础工作、运行时内核、后续强化与长期方向的临时视觉阶段。",
+      "counterpartPageId": "roadmap",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-project-status",
+        "open-community"
+      ],
+      "requiredSectionKeys": [
+        "status-boundary",
+        "visual-stages",
+        "long-term-direction",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [
+        "current-foundations",
+        "active-runtime-kernel",
+        "later-enterprise-hardening",
+        "distributed-agent-os-direction"
+      ],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-index",
+      "locale": "root",
+      "kind": "core",
+      "topicGroup": "documentation",
+      "route": "/docs/",
+      "sourcePath": "docs/index.md",
+      "title": "Documentation - OryxOS",
+      "description": "Browse the bilingual provisional documentation forms for OryxOS concepts, runtime design, interfaces, and contribution.",
+      "counterpartPageId": "docs-index",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-what-is-oryxos",
+        "read-contributing"
+      ],
+      "requiredSectionKeys": [
+        "documentation-map",
+        "prototype-boundary",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-index",
+      "locale": "zh",
+      "kind": "core",
+      "topicGroup": "documentation",
+      "route": "/zh/docs/",
+      "sourcePath": "zh/docs/index.md",
+      "title": "文档 - OryxOS",
+      "description": "浏览 OryxOS 概念、运行时设计、接口与参与方式的双语临时文档页面形式。",
+      "counterpartPageId": "docs-index",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-what-is-oryxos",
+        "read-contributing"
+      ],
+      "requiredSectionKeys": [
+        "documentation-map",
+        "prototype-boundary",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "community",
+      "locale": "root",
+      "kind": "core",
+      "topicGroup": "community",
+      "route": "/community",
+      "sourcePath": "community.md",
+      "title": "Community - OryxOS",
+      "description": "Find provisional participation, repository, governance, license, and community pathways for the OryxOS project.",
+      "counterpartPageId": "community",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-github-repository",
+        "open-github-issues"
+      ],
+      "requiredSectionKeys": [
+        "participation",
+        "governance",
+        "license",
+        "aspiration-boundary",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "community",
+      "locale": "zh",
+      "kind": "core",
+      "topicGroup": "community",
+      "route": "/zh/community",
+      "sourcePath": "zh/community.md",
+      "title": "社区 - OryxOS",
+      "description": "了解 OryxOS 项目的临时参与路径、代码仓库、治理、许可证与社区入口。",
+      "counterpartPageId": "community",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-github-repository",
+        "open-github-issues"
+      ],
+      "requiredSectionKeys": [
+        "participation",
+        "governance",
+        "license",
+        "aspiration-boundary",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [
+        "primary"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-what-is-oryxos",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "concepts",
+      "route": "/docs/concepts/what-is-oryxos",
+      "sourcePath": "docs/concepts/what-is-oryxos.md",
+      "title": "What Is OryxOS? - OryxOS",
+      "description": "Review the provisional concept and scope of OryxOS as an Agent OS foundation for Java teams.",
+      "counterpartPageId": "docs-what-is-oryxos",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-why-java",
+        "explore-architecture"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-what-is-oryxos",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "concepts",
+      "route": "/zh/docs/concepts/what-is-oryxos",
+      "sourcePath": "zh/docs/concepts/what-is-oryxos.md",
+      "title": "什么是 OryxOS？ - OryxOS",
+      "description": "审阅 OryxOS 作为面向 Java 团队的 Agent OS 基础项目的临时概念与范围。",
+      "counterpartPageId": "docs-what-is-oryxos",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-why-java",
+        "explore-architecture"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-why-java",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "concepts",
+      "route": "/docs/concepts/why-java",
+      "sourcePath": "docs/concepts/why-java.md",
+      "title": "Why Java? - OryxOS",
+      "description": "Review the provisional rationale for focusing the OryxOS design on Java teams and self-hosted environments.",
+      "counterpartPageId": "docs-why-java",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-design-principles",
+        "explore-architecture"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-why-java",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "concepts",
+      "route": "/zh/docs/concepts/why-java",
+      "sourcePath": "zh/docs/concepts/why-java.md",
+      "title": "为什么选择 Java？ - OryxOS",
+      "description": "审阅 OryxOS 面向 Java 团队与自托管环境进行设计的临时理由。",
+      "counterpartPageId": "docs-why-java",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-design-principles",
+        "explore-architecture"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-design-principles",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "concepts",
+      "route": "/docs/concepts/design-principles",
+      "sourcePath": "docs/concepts/design-principles.md",
+      "title": "Design Principles - OryxOS",
+      "description": "Review the provisional principles and boundaries guiding the OryxOS architecture and website prototype.",
+      "counterpartPageId": "docs-design-principles",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "explore-architecture",
+        "open-roadmap"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-design-principles",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "concepts",
+      "route": "/zh/docs/concepts/design-principles",
+      "sourcePath": "zh/docs/concepts/design-principles.md",
+      "title": "设计原则 - OryxOS",
+      "description": "审阅指导 OryxOS 架构与网站原型的临时原则和边界。",
+      "counterpartPageId": "docs-design-principles",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "explore-architecture",
+        "open-roadmap"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-project-status",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "project",
+      "route": "/docs/project/project-status",
+      "sourcePath": "docs/project/project-status.md",
+      "title": "Project Status - OryxOS",
+      "description": "Review a conservative pre-alpha status form without treating unverified OryxOS capabilities as available.",
+      "counterpartPageId": "docs-project-status",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-roadmap",
+        "open-community"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-project-status",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "project",
+      "route": "/zh/docs/project/project-status",
+      "sourcePath": "zh/docs/project/project-status.md",
+      "title": "项目状态 - OryxOS",
+      "description": "审阅保守的前阿尔法阶段状态页面形式，不把未经验证的 OryxOS 能力描述为可用。",
+      "counterpartPageId": "docs-project-status",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-roadmap",
+        "open-community"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-build-from-source",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "getting-started",
+      "route": "/docs/getting-started/build-from-source",
+      "sourcePath": "docs/getting-started/build-from-source.md",
+      "title": "Build from Source - OryxOS",
+      "description": "Review the provisional build-guidance page form; runnable instructions remain deferred until separately verified.",
+      "counterpartPageId": "docs-build-from-source",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-github-repository",
+        "read-contributing"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-build-from-source",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "getting-started",
+      "route": "/zh/docs/getting-started/build-from-source",
+      "sourcePath": "zh/docs/getting-started/build-from-source.md",
+      "title": "从源码构建 - OryxOS",
+      "description": "审阅临时构建指南页面形式；可执行说明将在单独验证后再提供。",
+      "counterpartPageId": "docs-build-from-source",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-github-repository",
+        "read-contributing"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-contributing",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "contributing",
+      "route": "/docs/contributing",
+      "sourcePath": "docs/contributing.md",
+      "title": "Contributing - OryxOS",
+      "description": "Review provisional contribution, governance, and community pathways for the OryxOS project.",
+      "counterpartPageId": "docs-contributing",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-github-issues",
+        "open-github-repository"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-contributing",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "contributing",
+      "route": "/zh/docs/contributing",
+      "sourcePath": "zh/docs/contributing.md",
+      "title": "参与贡献 - OryxOS",
+      "description": "审阅 OryxOS 项目的临时贡献、治理与社区参与路径。",
+      "counterpartPageId": "docs-contributing",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-github-issues",
+        "open-github-repository"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-provider",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/docs/runtime/provider",
+      "sourcePath": "docs/runtime/provider.md",
+      "title": "Provider Design - OryxOS",
+      "description": "Review a provisional Provider design page without implying that unfinished integrations are operational.",
+      "counterpartPageId": "docs-provider",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-react-loop",
+        "read-rest-api"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-provider",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/zh/docs/runtime/provider",
+      "sourcePath": "zh/docs/runtime/provider.md",
+      "title": "Provider 设计 - OryxOS",
+      "description": "审阅临时 Provider 设计页面，不暗示尚未完成的集成已经可以运行。",
+      "counterpartPageId": "docs-provider",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-react-loop",
+        "read-rest-api"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-react-loop",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/docs/runtime/react-loop",
+      "sourcePath": "docs/runtime/react-loop.md",
+      "title": "ReAct Loop Design - OryxOS",
+      "description": "Review a provisional ReAct loop design page without presenting an unverified workflow as runnable.",
+      "counterpartPageId": "docs-react-loop",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-provider",
+        "read-tool"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-react-loop",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/zh/docs/runtime/react-loop",
+      "sourcePath": "zh/docs/runtime/react-loop.md",
+      "title": "ReAct 循环设计 - OryxOS",
+      "description": "审阅临时 ReAct 循环设计页面，不把未经验证的工作流描述为可执行。",
+      "counterpartPageId": "docs-react-loop",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-provider",
+        "read-tool"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-tool",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/docs/runtime/tool",
+      "sourcePath": "docs/runtime/tool.md",
+      "title": "Tool Design - OryxOS",
+      "description": "Review a provisional Tool design page that avoids claims about unverified execution behavior.",
+      "counterpartPageId": "docs-tool",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-react-loop",
+        "read-memory"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-tool",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/zh/docs/runtime/tool",
+      "sourcePath": "zh/docs/runtime/tool.md",
+      "title": "Tool 设计 - OryxOS",
+      "description": "审阅临时 Tool 设计页面，避免对未经验证的执行行为作出能力声明。",
+      "counterpartPageId": "docs-tool",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-react-loop",
+        "read-memory"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-memory",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/docs/runtime/memory",
+      "sourcePath": "docs/runtime/memory.md",
+      "title": "Memory Design - OryxOS",
+      "description": "Review a provisional Memory design page without implying that persistence behavior has been verified.",
+      "counterpartPageId": "docs-memory",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-react-loop",
+        "read-skill-profile"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-memory",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/zh/docs/runtime/memory",
+      "sourcePath": "zh/docs/runtime/memory.md",
+      "title": "Memory 设计 - OryxOS",
+      "description": "审阅临时 Memory 设计页面，不暗示持久化行为已经得到验证。",
+      "counterpartPageId": "docs-memory",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-react-loop",
+        "read-skill-profile"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-skill-profile",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/docs/runtime/skill-profile",
+      "sourcePath": "docs/runtime/skill-profile.md",
+      "title": "Skill and Profile Design - OryxOS",
+      "description": "Review how one YAML Profile defines an Agent and may reference a Skill loaded as behavioral prompt context.",
+      "counterpartPageId": "docs-skill-profile",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-what-is-oryxos",
+        "read-cli"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-skill-profile",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "runtime",
+      "route": "/zh/docs/runtime/skill-profile",
+      "sourcePath": "zh/docs/runtime/skill-profile.md",
+      "title": "Skill 与 Profile 设计 - OryxOS",
+      "description": "审阅一个 YAML Profile 如何完整定义 Agent，并可引用作为行为提示上下文加载的 Skill。",
+      "counterpartPageId": "docs-skill-profile",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-what-is-oryxos",
+        "read-cli"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-cli",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "interfaces",
+      "route": "/docs/interfaces/cli",
+      "sourcePath": "docs/interfaces/cli.md",
+      "title": "CLI Interface - OryxOS",
+      "description": "Review a provisional CLI page form without presenting unverified commands as runnable interfaces.",
+      "counterpartPageId": "docs-cli",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-build-from-source",
+        "read-rest-api"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-cli",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "interfaces",
+      "route": "/zh/docs/interfaces/cli",
+      "sourcePath": "zh/docs/interfaces/cli.md",
+      "title": "CLI 接口 - OryxOS",
+      "description": "审阅临时 CLI 页面形式，不把未经验证的命令作为可执行接口展示。",
+      "counterpartPageId": "docs-cli",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-build-from-source",
+        "read-rest-api"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "docs-rest-api",
+      "locale": "root",
+      "kind": "documentation",
+      "topicGroup": "interfaces",
+      "route": "/docs/interfaces/rest-api",
+      "sourcePath": "docs/interfaces/rest-api.md",
+      "title": "REST API Interface - OryxOS",
+      "description": "Review a provisional REST API page form without presenting unverified endpoints as available.",
+      "counterpartPageId": "docs-rest-api",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-cli",
+        "read-provider"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "docs-rest-api",
+      "locale": "zh",
+      "kind": "documentation",
+      "topicGroup": "interfaces",
+      "route": "/zh/docs/interfaces/rest-api",
+      "sourcePath": "zh/docs/interfaces/rest-api.md",
+      "title": "REST API 接口 - OryxOS",
+      "description": "审阅临时 REST API 页面形式，不把未经验证的端点描述为可用。",
+      "counterpartPageId": "docs-rest-api",
+      "required": true,
+      "contentStatus": "prototype",
+      "templateId": "documentation-prototype",
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "read-cli",
+        "read-provider"
+      ],
+      "requiredSectionKeys": [
+        "overview",
+        "intended-design",
+        "status-placeholder",
+        "limitations-placeholder",
+        "related-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": true,
+      "navigationVisibility": [
+        "sidebar"
+      ],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "translation-unavailable",
+      "locale": "root",
+      "kind": "fallback",
+      "topicGroup": "fallback",
+      "route": "/translation-unavailable",
+      "sourcePath": "translation-unavailable.md",
+      "title": "Translation Unavailable - OryxOS",
+      "description": "The equivalent English translation is not yet available; continue with English navigation without substitution.",
+      "counterpartPageId": "translation-unavailable",
+      "required": false,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-documentation",
+        "open-home"
+      ],
+      "requiredSectionKeys": [
+        "fallback-explanation",
+        "localized-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [],
+      "ogImage": "social-default-en"
+    },
+    {
+      "pageId": "translation-unavailable",
+      "locale": "zh",
+      "kind": "fallback",
+      "topicGroup": "fallback",
+      "route": "/zh/translation-unavailable",
+      "sourcePath": "zh/translation-unavailable.md",
+      "title": "暂无对应翻译 - OryxOS",
+      "description": "暂时没有对应的简体中文翻译；请继续使用简体中文导航，不会显示语义不相关的页面。",
+      "counterpartPageId": "translation-unavailable",
+      "required": false,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "primaryActionKeys": [
+        "open-documentation",
+        "open-home"
+      ],
+      "requiredSectionKeys": [
+        "fallback-explanation",
+        "localized-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [],
+      "ogImage": "social-default-zh"
+    },
+    {
+      "pageId": "locale-fallback-fixture",
+      "locale": "root",
+      "kind": "fallback",
+      "topicGroup": "fallback",
+      "route": "/test-fixtures/locale-fallback",
+      "sourcePath": "test-fixtures/locale-fallback.md",
+      "title": "Locale Fallback Fixture - OryxOS",
+      "description": "A hidden English-only fixture that verifies explicit target-locale fallback behavior.",
+      "counterpartPageId": null,
+      "required": false,
+      "contentStatus": "prototype",
+      "templateId": null,
+      "draftNoticeKey": "draft-visual-prototype",
+      "localeSwitchFallbackPageId": "translation-unavailable",
+      "primaryActionKeys": [
+        "open-documentation"
+      ],
+      "requiredSectionKeys": [
+        "fixture-purpose",
+        "localized-navigation"
+      ],
+      "capabilityLegendStateKeys": [],
+      "roadmapVisualStageKeys": [],
+      "requiresLimitationsPlaceholder": false,
+      "navigationVisibility": [],
+      "ogImage": "social-default-en"
+    }
+  ],
+  "siteRecoveryArtifact": {
+    "artifactId": "not-found",
+    "sourcePath": "404.md",
+    "outputPath": "/404.html",
+    "documentLanguage": "en",
+    "title": "Page Not Found / 页面未找到 - OryxOS",
+    "description": "Recover through the English or Simplified Chinese OryxOS prototype navigation. / 通过 OryxOS 原型的英文或简体中文导航继续访问。",
+    "englishRecoveryRoutes": [
+      "/",
+      "/docs/",
+      "/community"
+    ],
+    "chineseRecoveryRoutes": [
+      "/zh/",
+      "/zh/docs/",
+      "/zh/community"
+    ],
+    "clientLocaleEnhancement": true,
+    "ogImage": "social-default-en",
+    "ogImageAlt": "OryxOS bilingual prototype page recovery card / OryxOS 双语原型页面恢复卡片"
+  }
+}

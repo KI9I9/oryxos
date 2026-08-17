@@ -35,4 +35,9 @@ target/
 # VitePress build output and cache
 website/.vitepress/dist/
 website/.vitepress/cache/
+website/.vitepress/.temp/
 website/node_modules/
+website/playwright-report/
+website/test-results/
+website/.playwright-artifacts/
+.website.bak

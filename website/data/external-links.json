@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "links": [
+    {
+      "key": "github-repository",
+      "url": "https://github.com/KI9I9/oryxos",
+      "rootLabel": "GitHub repository",
+      "zhLabel": "GitHub 仓库",
+      "rootPurpose": "Primary OryxOS source repository specified for this website prototype.",
+      "zhPurpose": "为这个官网视觉原型指定的 OryxOS 主源码仓库。",
+      "approved": true,
+      "external": true,
+      "openInNewTab": true,
+      "rel": "noreferrer",
+      "locations": [
+        "primary",
+        "footer",
+        "cta"
+      ]
+    },
+    {
+      "key": "github-issues",
+      "url": "https://github.com/KI9I9/oryxos/issues",
+      "rootLabel": "GitHub issues",
+      "zhLabel": "GitHub Issues",
+      "rootPurpose": "Repository issue tracker for project questions, defects, and contribution coordination.",
+      "zhPurpose": "用于项目问题、缺陷与贡献协作的仓库 Issue 跟踪入口。",
+      "approved": true,
+      "external": true,
+      "openInNewTab": true,
+      "rel": "noreferrer",
+      "locations": [
+        "footer",
+        "cta"
+      ]
+    },
+    {
+      "key": "repository-owner",
+      "url": "https://github.com/KI9I9",
+      "rootLabel": "Repository owner profile",
+      "zhLabel": "仓库所有者主页",
+      "rootPurpose": "GitHub profile that owns the target OryxOS repository.",
+      "zhPurpose": "目标 OryxOS 仓库所有者的 GitHub 主页。",
+      "approved": true,
+      "external": true,
+      "openInNewTab": true,
+      "rel": "noreferrer",
+      "locations": [
+        "footer"
+      ]
+    },
+    {
+      "key": "project-license",
+      "url": "https://github.com/KI9I9/oryxos/blob/main/LICENSE",
+      "rootLabel": "Apache License 2.0",
+      "zhLabel": "Apache License 2.0",
+      "rootPurpose": "Repository copy of the OryxOS project license.",
+      "zhPurpose": "OryxOS 项目许可证的仓库副本。",
+      "approved": true,
+      "external": true,
+      "openInNewTab": true,
+      "rel": "noreferrer",
+      "locations": [
+        "footer"
+      ]
+    },
+    {
+      "key": "apache-foundation-information",
+      "url": "https://www.apache.org/",
+      "rootLabel": "Apache Software Foundation",
+      "zhLabel": "Apache 软件基金会",
+      "rootPurpose": "General foundation information used only when describing a future aspiration, never a current affiliation.",
+      "zhPurpose": "仅在说明未来愿景时使用的基金会公开信息，绝不表示当前从属或认可关系。",
+      "approved": true,
+      "external": true,
+      "openInNewTab": true,
+      "rel": "noreferrer",
+      "locations": [
+        "footer"
+      ]
+    }
+  ]
+}

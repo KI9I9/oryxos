@@ -1,0 +1,80 @@
+@media (max-width: 959px) {
+  .locale-switcher {
+    margin-left: 0.5rem;
+  }
+
+  .VPNavBarMenu,
+  .VPNavBarExtra {
+    display: none !important;
+  }
+
+  .VPNavBarHamburger {
+    display: flex !important;
+  }
+
+  .VPNavScreen {
+    display: block !important;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .prototype-home-notice {
+    width: min(calc(100% - 24px), var(--oryx-content-wide));
+  }
+
+  .prototype-notice {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .VPDoc {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .section-heading h2,
+  .home-direction h2,
+  .architecture-map h2,
+  .roadmap-timeline h2,
+  .documentation-landing h2,
+  .community-links h2 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+}
+
+@media (max-width: 479px) {
+  .VPNavBarTitle .title {
+    min-width: 0;
+  }
+
+  .VPNavBar .content {
+    min-width: 0;
+  }
+
+  .locale-switcher span {
+    display: none;
+  }
+
+  .locale-switcher {
+    min-width: auto;
+    padding-inline: 0.65rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .VPNavBarTitle .title > span {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .home-landing,
+  .not-found-experience {
+    max-width: 1280px;
+  }
+}
