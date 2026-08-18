@@ -1,0 +1,113 @@
+name: Publish OryxOS website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - ".github/workflows/website-*.yml"
+      - ".github/workflows/website-*.yaml"
+      - "specs/003-oryxos-pages-publication/**"
+      - "README.md"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: website-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and validate website
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Use repository Node version
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: website/.nvmrc
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run website quality gate
+        run: npm run test:quality
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: github-pages
+          path: website/.vitepress/dist
+
+  deploy:
+    name: Deploy GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  smoke:
+    name: Verify published website
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Check English and Chinese home pages
+        env:
+          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          page_base_url="${PAGE_URL%/}/"
+
+          for route in "" "zh/"; do
+            url="${page_base_url}${route}"
+            route_available=false
+
+            for attempt in {1..6}; do
+              if curl \
+                --fail \
+                --silent \
+                --show-error \
+                --location \
+                --connect-timeout 3 \
+                --max-time 10 \
+                --output /dev/null \
+                "${url}"; then
+                route_available=true
+                break
+              fi
+
+              if [[ "${attempt}" -lt 6 ]]; then
+                echo "Attempt ${attempt}/6 failed for ${url}; retrying in 5 seconds."
+                sleep 5
+              fi
+            done
+
+            if [[ "${route_available}" != "true" ]]; then
+              echo "Published route did not become available: ${url}" >&2
+              exit 1
+            fi
+          done

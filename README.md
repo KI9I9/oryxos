@@ -186,6 +186,26 @@ All endpoints are prefixed with `/api/v1`:
 | Logging | Logback + SLF4J (structured JSON) |
 | Build | Maven multi-module |
 
+## Website
+
+The bilingual OryxOS Website is published with GitHub Pages at:
+
+<https://ki9i9.github.io/oryxos/>
+
+Validate the Website locally with the repository-pinned Node.js and npm versions:
+
+```bash
+cd website
+npm ci
+npx playwright install --with-deps chromium
+npm run test:quality
+```
+
+Website-related changes merged to `main` are published by the **Publish OryxOS website** GitHub Actions workflow.
+Maintainers can also run that workflow manually through `workflow_dispatch`. Repository Pages settings must use
+**GitHub Actions** as the source; pull requests run only the read-only Website validation workflow and cannot
+deploy.
+
 ## License
 
 [Apache License 2.0](LICENSE) · [oryx-labs](https://github.com/oryx-labs) · Goal: Apache Software Foundation top-level project

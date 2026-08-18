@@ -10,7 +10,7 @@ From the repository Website directory:
 ```bash
 cd website
 npm ci
-npx playwright install chromium
+npx playwright install --with-deps chromium
 npm run test:quality
 ```
 
