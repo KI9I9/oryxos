@@ -27,12 +27,12 @@ content without broken project-base links or missing required assets.
 **Independent Test**: Open `/oryxos/` and `/oryxos/zh/` from the public Pages host and confirm both return a
 successful response and load their required styles, scripts, images, and internal links below `/oryxos/`.
 
-### User Story 2 - Publish Changes from Main (Priority: P1)
+### User Story 2 - Publish Changes from learn-main (Priority: P1)
 
-As a maintainer, I can merge a Website-related change to `main` and have GitHub Actions validate, build, and publish
+As a maintainer, I can push a Website-related change to `learn-main` and have GitHub Actions validate, build, and publish
 the static site without manually copying files to a branch.
 
-**Independent Test**: Run the publication workflow from a qualifying `main` revision and confirm it completes the
+**Independent Test**: Run the publication workflow from a qualifying `learn-main` revision and confirm it completes the
 quality gate, uploads the generated VitePress output, and deploys that output through GitHub Pages.
 
 ### User Story 3 - Validate Safely and Republish Manually (Priority: P2)
@@ -49,7 +49,7 @@ Pages deployment workflow; then confirm an authorized manual dispatch follows th
 - A pull request changes Website or workflow files but must not deploy.
 - Generated links or assets accidentally omit the `/oryxos/` project base.
 - GitHub Pages takes a short time to serve the new deployment after the deploy action completes.
-- Two publication runs overlap after rapid updates to `main`; only the newest active publication should continue.
+- Two publication runs overlap after rapid updates to `learn-main`; only the newest active publication should continue.
 - Repository Pages settings are missing or not configured for GitHub Actions.
 
 ## Functional Requirements
@@ -57,7 +57,7 @@ Pages deployment workflow; then confirm an authorized manual dispatch follows th
 - **FR-001**: The Website MUST publish to `https://ki9i9.github.io/oryxos/` using the repository's default GitHub
   Pages project site, without a custom domain.
 - **FR-002**: The VitePress production build MUST continue using the project base `/oryxos/`.
-- **FR-003**: One dedicated workflow MUST publish Website-related changes pushed to `main` and MUST also support
+- **FR-003**: One dedicated workflow MUST publish Website-related changes pushed to `learn-main` and MUST also support
   authorized manual execution through `workflow_dispatch`.
 - **FR-004**: Pull requests MUST NOT trigger a Pages deployment; they MUST use the existing read-only Website
   validation workflow.
@@ -82,7 +82,7 @@ Pages deployment workflow; then confirm an authorized manual dispatch follows th
 
 ## Success Criteria
 
-- **SC-001**: A successful qualifying `main` run deploys the generated VitePress site through GitHub Pages without
+- **SC-001**: A successful qualifying `learn-main` run deploys the generated VitePress site through GitHub Pages without
   manual branch publication.
 - **SC-002**: The final public responses for `/oryxos/` and `/oryxos/zh/` succeed after deployment.
 - **SC-003**: Required internal links and static resources remain below `/oryxos/` and pass the existing production

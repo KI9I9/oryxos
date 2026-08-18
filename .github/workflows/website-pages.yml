@@ -2,7 +2,7 @@ name: Publish OryxOS website
 
 on:
   push:
-    branches: [main]
+    branches: [learn-main]
     paths:
       - "website/**"
       - ".github/workflows/website-*.yml"

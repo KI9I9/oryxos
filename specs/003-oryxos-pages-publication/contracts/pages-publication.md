@@ -17,7 +17,7 @@ workflow, remain non-deploying.
 
 The publication workflow MUST support:
 
-- `push` to `main` for `website/**`, `.github/workflows/website-*.yml`,
+- `push` to `learn-main` for `website/**`, `.github/workflows/website-*.yml`,
   `.github/workflows/website-*.yaml`,
   `specs/003-oryxos-pages-publication/**`, and `README.md`;
 - `workflow_dispatch` for an authorized manual publication.

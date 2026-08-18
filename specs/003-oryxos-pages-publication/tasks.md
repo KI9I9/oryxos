@@ -20,7 +20,7 @@ publication records, evidence bundles, historical restoration, automatic rollbac
 
 ## Phase 2: GitHub Pages Workflow
 
-- [x] T005 Create the build job in `.github/workflows/website-pages.yml` for pushes to `main` affecting
+- [x] T005 Create the build job in `.github/workflows/website-pages.yml` for pushes to `learn-main` affecting
   `website/**`, `.github/workflows/website-*.yml`, `.github/workflows/website-*.yaml`,
   `specs/003-oryxos-pages-publication/**`, or `README.md`, plus
   `workflow_dispatch`; use `website/.nvmrc`, npm cache, `npm ci`, Chromium installation, and
@@ -46,7 +46,7 @@ publication records, evidence bundles, historical restoration, automatic rollbac
   Pages deployment capability.
 - [ ] T012 Configure `KI9I9/oryxos` Pages source as **GitHub Actions** and verify the `github-pages` environment; if
   repository permissions are unavailable, report the required owner action rather than bypassing the setting.
-- [ ] T013 Run `Publish OryxOS website` from an authorized `main` revision or manual dispatch and confirm build,
+- [ ] T013 Run `Publish OryxOS website` from an authorized `learn-main` revision or manual dispatch and confirm build,
   deploy, and smoke jobs succeed.
 - [ ] T014 Verify `https://ki9i9.github.io/oryxos/` and `https://ki9i9.github.io/oryxos/zh/` publicly, then record
   the successful workflow URL and public URL in the delivery summary.
