@@ -23,9 +23,9 @@ publication records, evidence bundles, historical restoration, automatic rollbac
 - [x] T005 Create the build job in `.github/workflows/website-pages.yml` for pushes to `learn-main` affecting
   `website/**`, `.github/workflows/website-*.yml`, `.github/workflows/website-*.yaml`,
   `specs/003-oryxos-pages-publication/**`, or `README.md`, plus
-  `workflow_dispatch`; use `website/.nvmrc`, npm cache, `npm ci`, Chromium installation, and
-  `npm run test:quality`, then upload only `website/.vitepress/dist` with `actions/upload-pages-artifact` under the
-  standard `github-pages` artifact name.
+  `workflow_dispatch`; use `website/.nvmrc`, npm cache, `npm ci`, and the browser-free `npm run test:publish` static
+  gate, then upload only `website/.vitepress/dist` with `actions/upload-pages-artifact` under the standard
+  `github-pages` artifact name.
 - [x] T006 Add the deploy job in `.github/workflows/website-pages.yml`; depend on the successful build, use the
   `github-pages` environment, run `actions/configure-pages` and `actions/deploy-pages`, expose the returned page URL,
   and grant only `contents: read`, `pages: write`, and `id-token: write` at job scope.

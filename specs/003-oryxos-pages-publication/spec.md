@@ -60,10 +60,11 @@ Pages deployment workflow; then confirm an authorized manual dispatch follows th
 - **FR-003**: One dedicated workflow MUST publish Website-related changes pushed to `learn-main` and MUST also support
   authorized manual execution through `workflow_dispatch`.
 - **FR-004**: Pull requests MUST NOT trigger a Pages deployment; they MUST use the existing read-only Website
-  validation workflow.
+  validation workflow, including its Chromium end-to-end checks.
 - **FR-005**: The publication build MUST use `website/.nvmrc`, the committed npm lockfile, and `npm ci`.
-- **FR-006**: The publication build MUST run the existing Website quality command before uploading any Pages
-  artifact.
+- **FR-006**: The publication build MUST run `npm run test:publish` before uploading any Pages artifact. This static
+  publication gate MUST cover script tests, workflow policy, content and asset checks, type checking, production
+  build, and generated-output verification without installing a browser.
 - **FR-007**: The workflow MUST deploy only the generated `website/.vitepress/dist` directory.
 - **FR-008**: Publication MUST use the official `actions/configure-pages`, `actions/upload-pages-artifact`, and
   `actions/deploy-pages` actions rather than a `gh-pages` branch or third-party deployment action.

@@ -61,11 +61,13 @@ https://ki9i9.github.io/oryxos/
 Push a relevant Website change to `learn-main`. The `Publish OryxOS website` workflow should:
 
 1. install dependencies with `npm ci`;
-2. install Chromium;
-3. run `npm run test:quality`;
-4. upload `website/.vitepress/dist` through the official Pages artifact action;
-5. deploy through the `github-pages` environment;
-6. smoke-check the English and Chinese home routes.
+2. run the browser-free `npm run test:publish` static gate;
+3. upload `website/.vitepress/dist` through the official Pages artifact action;
+4. deploy through the `github-pages` environment;
+5. smoke-check the English and Chinese home routes.
+
+The separate read-only `Validate website` workflow installs Chromium and runs `npm run test:quality` so browser
+E2E coverage is retained without repeating it in the publication workflow.
 
 A failure before deployment leaves the previous public site unchanged.
 
