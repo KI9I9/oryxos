@@ -1,41 +1,23 @@
-# Specification Quality Checklist: OryxOS GitHub Pages Publication
+# Requirements Quality Checklist
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning
-**Created**: 2026-08-17
-**Feature**: [spec.md](../spec.md)
+**Feature**: `003-oryxos-pages-publication`
 
-## Content Quality
+- [x] The scope is limited to publishing the existing static Website.
+- [x] The exact GitHub Pages project URL and `/oryxos/` base are stated.
+- [x] Automatic `main` publication and manual dispatch are defined.
+- [x] Pull-request validation is explicitly non-deploying.
+- [x] Reproducible Node/npm installation and the existing quality gate are required.
+- [x] Only official GitHub Pages actions are allowed.
+- [x] Build and deploy permissions are separated and least-privilege.
+- [x] The generated output directory is explicit.
+- [x] Basic post-deployment smoke verification is defined.
+- [x] Failure before deployment preserves the current public site.
+- [x] Runtime and Website build boundaries remain independent.
+- [x] Custom release evidence, restoration, rollback, SLA, CMS, and custom-domain work are explicitly out of scope.
+- [x] Every functional requirement is testable through local commands, workflow inspection, or public URL checks.
+- [x] The implementation task list is small enough to execute and review incrementally.
 
-- [x] Operational details are limited to externally verifiable controls needed for safe GitHub Pages publication, evidence retention, and restoration
-- [x] Focused on visitor trust, maintainer control, public discoverability, and release recovery
-- [x] Written for product, project-maintenance, and repository-governance stakeholders
-- [x] All mandatory sections completed
+## Result
 
-## Requirement Completeness
-
-- [x] No `[NEEDS CLARIFICATION]` markers remain
-- [x] Requirements are testable and unambiguous
-- [x] Success criteria are measurable
-- [x] Success criteria are observable through the public site, GitHub publication evidence, and repository audit records
-- [x] All acceptance scenarios are defined
-- [x] Edge cases are identified
-- [x] Scope is clearly bounded
-- [x] Dependencies and assumptions are identified
-
-## Feature Readiness
-
-- [x] All functional requirements have clear acceptance conditions through user scenarios or measurable outcomes
-- [x] User scenarios cover public access, protected publication, discovery, localization, and restoration
-- [x] Feature meets measurable outcomes defined in Success Criteria
-- [x] Specification constrains required official Pages semantics and evidence identities without pinning action versions or introducing a second Website architecture
-
-## Notes
-
-- The user explicitly selected official-site publication rather than a public prototype preview.
-- The user explicitly selected validation followed by a protected publication environment with maintainer approval.
-- The default GitHub Pages project origin is an assumption; a custom domain is intentionally outside this Feature.
-- Feature 002 currently records nine open discrepancies that block public deployment. Resolving or safely removing their affected public claims is mandatory before publication approval.
-- Validation iteration 1 passed all checklist items; the specification is ready for `/speckit-clarify` or `/speckit-plan`.
-- Clarification completed on 2026-08-17 with five accepted decisions covering the release evidence baseline, missing-release behavior, unavailable capability examples, prerelease labeling, and protected-environment approval policy.
-- Post-clarification validation found no unresolved markers, placeholder requirements, or whitespace errors; the specification is ready for `/speckit-plan`.
-- Post-planning consistency review on 2026-08-18 added exact artifact/deployment evidence, append-only successful-release history, post-approval Release freshness, `cancel-in-progress: false` production serialization with active-slot request acceptance, and suffixed requirement-ID traceability without changing the approved product scope.
+The specification is ready for minimal implementation. External completion still requires repository-owner access
+to enable GitHub Pages with GitHub Actions and to run the first public deployment.
