@@ -204,7 +204,8 @@ npm run test:quality
 Website-related changes pushed to `learn-main` are published by the **Publish OryxOS website** GitHub Actions workflow.
 Maintainers can also run that workflow manually through `workflow_dispatch`. Repository Pages settings must use
 **GitHub Actions** as the source; pull requests run only the read-only Website validation workflow and cannot
-deploy.
+deploy. The validation workflow runs the full Chromium end-to-end suite, while publication uses the faster
+`npm run test:publish` static gate before uploading the generated site.
 
 ## License
 

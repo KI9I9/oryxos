@@ -1,6 +1,6 @@
 # Implementation Plan: Publish the OryxOS Website with GitHub Pages
 
-**Branch**: `learn-main` | **Date**: 2026-08-18 | **Spec**: [spec.md](spec.md)
+**Branch**: `learn-class-14` | **Publication branch**: `learn-main` | **Date**: 2026-08-18 | **Spec**: [spec.md](spec.md)
 
 ## Summary
 
@@ -18,7 +18,9 @@ publication records, release baselines, evidence chains, restoration workflows, 
 
 **Build inputs**: `website/.nvmrc`, `website/package-lock.json`, existing Website source and tests
 
-**Build command**: `npm ci` followed by `npm run test:quality` from `website/`
+**Publication command**: `npm ci` followed by `npm run test:publish` from `website/`
+
+**Validation command**: `npm ci`, Chromium installation, and `npm run test:quality` from `website/`
 
 **Build output**: `website/.vitepress/dist`
 
@@ -26,7 +28,7 @@ publication records, release baselines, evidence chains, restoration workflows, 
 
 **Workflow actions**: Official Pages configuration, artifact upload, and deployment actions
 
-**Browser policy**: Existing Playwright Chromium quality gate
+**Browser policy**: Chromium E2E remains in the read-only validation workflow and is not repeated during publication
 
 ## Constitution Check
 
@@ -36,7 +38,7 @@ publication records, release baselines, evidence chains, restoration workflows, 
 | Reproducible install and build | Uses `website/.nvmrc`, the committed lockfile, and `npm ci` | PASS |
 | Website is not added to Maven | No Maven module or Runtime packaging change is introduced | PASS |
 | Runtime is not required to serve Website content | GitHub Pages serves independent static files | PASS |
-| Applicable Website quality gates remain blocking | Publication runs the existing `npm run test:quality` command | PASS |
+| Applicable Website quality gates remain blocking | Validation runs `test:quality`; publication runs the static `test:publish` gate | PASS |
 | Minimal permissions and no long-lived credential | Build is read-only; deploy uses job-scoped Pages/OIDC permissions | PASS |
 | No server runtime, CMS, database, login, or tracking | None are introduced | PASS |
 | Spec-driven implementation | Specification, plan, contracts, tasks, and validation precede workflow changes | PASS |
@@ -92,8 +94,8 @@ Pages actions and Pages/OIDC write permissions. All other Website workflows rema
 
 Create a workflow with three jobs:
 
-1. **build**: check out, set up Node, run `npm ci`, install Chromium, run `npm run test:quality`, and upload the
-   generated Pages artifact.
+1. **build**: check out, set up Node, run `npm ci`, run `npm run test:publish`, and upload the generated Pages
+   artifact without installing Chromium.
 2. **deploy**: use the `github-pages` environment, configure Pages, and deploy the uploaded artifact with job-scoped
    `pages: write` and `id-token: write`.
 3. **smoke**: use the returned page URL and bounded `curl` retries to verify the root and Chinese home routes.

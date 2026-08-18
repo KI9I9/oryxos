@@ -33,14 +33,15 @@ the privileged surface small without introducing a complex promotion system.
 **Rationale**: Pull requests already have a read-only validation workflow. Manual dispatch is sufficient for an
 authorized republish of the current revision without creating a separate recovery system.
 
-## Decision 5: Reuse the existing Website quality gate
+## Decision 5: Separate browser validation from publication
 
-**Decision**: Run `npm ci`, install the locked Chromium browser, and execute `npm run test:quality` before artifact
-upload.
+**Decision**: Keep the locked Chromium browser and `npm run test:quality` in the read-only validation workflow. Run
+`npm run test:publish` before Pages artifact upload, covering all static checks without installing Chromium again.
 
-**Rationale**: The existing command already covers script tests, workflow policy, content checks, deterministic
-assets, TypeScript, production build verification, and Chromium end-to-end tests. Creating a second publication-
-specific quality suite would duplicate behavior.
+**Rationale**: Pull-request and push validation already covers the browser-dependent accessibility, interaction,
+and responsive tests. Publication still blocks on script tests, workflow policy, content checks, deterministic
+assets, TypeScript, production build, and output verification, while avoiding a second browser download and E2E
+run for the same revision.
 
 ## Decision 6: Use bounded public smoke checks
 

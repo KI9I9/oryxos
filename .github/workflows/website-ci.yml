@@ -1,4 +1,5 @@
 name: Validate website
+run-name: "Validate website | ${{ github.event_name }} | ${{ github.ref_name }}"
 
 on:
   pull_request:

@@ -266,6 +266,13 @@ function workflowUsesNodeVersionFile(workflow) {
 }
 
 function inspectPagesWorkflow(workflow, filePath, errors) {
+  if (
+    typeof workflow["run-name"] !== "string" ||
+    !workflow["run-name"].startsWith("Publish website |")
+  ) {
+    errors.push(`${filePath}:run-name must clearly identify a website publication run.`);
+  }
+
   const triggers = workflow.on;
 
   if (!isPlainObject(triggers)) {
@@ -345,6 +352,25 @@ function inspectPagesWorkflow(workflow, filePath, errors) {
   if (isPlainObject(buildJob)) {
     if (!permissionsMatch(buildJob.permissions, { contents: "read" })) {
       errors.push(`${filePath}:jobs.build job must use only contents: read.`);
+    }
+
+    const buildCommands = Array.isArray(buildJob.steps)
+      ? buildJob.steps
+        .filter((step) => isPlainObject(step) && typeof step.run === "string")
+        .map((step) => step.run)
+        .join("\n")
+      : "";
+    if (!buildCommands.includes("npm run test:publish")) {
+      errors.push(`${filePath}:jobs.build must run npm run test:publish before artifact upload.`);
+    }
+    if (
+      /playwright\s+install|chromium|npm\s+run\s+test:quality|npm\s+run\s+test:e2e/i.test(
+        buildCommands,
+      )
+    ) {
+      errors.push(
+        `${filePath}:jobs.build must not install Chromium or run browser E2E; website-ci.yml owns the full browser gate.`,
+      );
     }
 
     const uploadSteps = stepsUsingAction(buildJob, OFFICIAL_PAGES_ACTIONS.upload);
@@ -491,6 +517,13 @@ function inspectPagesWorkflow(workflow, filePath, errors) {
 }
 
 function inspectWebsiteCiWorkflow(workflow, filePath, errors) {
+  if (
+    typeof workflow["run-name"] !== "string" ||
+    !workflow["run-name"].startsWith("Validate website |")
+  ) {
+    errors.push(`${filePath}:run-name must clearly identify a website validation run.`);
+  }
+
   if (!isPlainObject(workflow.on)) {
     errors.push(`${filePath}:on must define pull_request and push validation triggers.`);
     return;
@@ -506,6 +539,20 @@ function inspectWebsiteCiWorkflow(workflow, filePath, errors) {
         `${filePath}:on.${triggerName}.paths must include .github/workflows/** so every workflow change is policy-checked.`,
       );
     }
+  }
+
+  const validationJob = isPlainObject(workflow.jobs) ? workflow.jobs.validate : null;
+  const validationCommands = isPlainObject(validationJob) && Array.isArray(validationJob.steps)
+    ? validationJob.steps
+      .filter((step) => isPlainObject(step) && typeof step.run === "string")
+      .map((step) => step.run)
+      .join("\n")
+    : "";
+  if (!/playwright\s+install\s+--with-deps\s+chromium/i.test(validationCommands)) {
+    errors.push(`${filePath}:jobs.validate must install Chromium with Playwright system dependencies.`);
+  }
+  if (!validationCommands.includes("npm run test:quality")) {
+    errors.push(`${filePath}:jobs.validate must run the full npm run test:quality gate.`);
   }
 }
 

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -13,6 +13,7 @@ import {
 function createReadOnlyWebsiteWorkflow() {
   return `
 name: Website validation
+run-name: Validate website | \${{ github.event_name }} | \${{ github.ref_name }}
 on:
   pull_request:
     paths:
@@ -31,6 +32,8 @@ jobs:
         with:
           node-version-file: website/.nvmrc
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:quality
       - uses: actions/upload-artifact@v4
         with:
           path: website/.vitepress/dist
@@ -40,6 +43,7 @@ jobs:
 function createPagesWorkflow() {
   return `
 name: Publish OryxOS website
+run-name: Publish website | \${{ github.ref_name }} | run \${{ github.run_number }}
 on:
   push:
     branches: [learn-main]
@@ -70,8 +74,7 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:quality
+      - run: npm run test:publish
       - uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
@@ -137,6 +140,85 @@ function includesError(errors, expectedText) {
 test("accepts read-only Website workflows and the sole official Pages workflow", () => {
   assert.deepEqual(validateYaml(createReadOnlyWebsiteWorkflow(), "website-ci.yml"), []);
   assert.deepEqual(validateYaml(createPagesWorkflow(), "website-pages.yml"), []);
+});
+
+test("requires distinct validation and publication run names", () => {
+  const unnamedValidationWorkflow = createReadOnlyWebsiteWorkflow().replace(
+    "run-name: Validate website | ${{ github.event_name }} | ${{ github.ref_name }}\n",
+    "",
+  );
+  const unnamedPagesWorkflow = createPagesWorkflow().replace(
+    "run-name: Publish website | ${{ github.ref_name }} | run ${{ github.run_number }}\n",
+    "",
+  );
+
+  assert.equal(
+    includesError(validateYaml(unnamedValidationWorkflow, "website-ci.yml"), "run-name"),
+    true,
+  );
+  assert.equal(
+    includesError(validateYaml(unnamedPagesWorkflow, "website-pages.yml"), "run-name"),
+    true,
+  );
+});
+
+test("keeps Chromium E2E in validation and out of publication", () => {
+  const validationWithoutChromium = createReadOnlyWebsiteWorkflow().replace(
+    "      - run: npx playwright install --with-deps chromium\n",
+    "",
+  );
+  const publicationWithChromium = createPagesWorkflow().replace(
+    "      - run: npm run test:publish",
+    "      - run: npx playwright install --with-deps chromium\n      - run: npm run test:quality",
+  );
+  const publicationWithoutStaticGate = createPagesWorkflow().replace(
+    "npm run test:publish",
+    "npm run docs:build",
+  );
+
+  assert.equal(
+    includesError(validateYaml(validationWithoutChromium, "website-ci.yml"), "Chromium"),
+    true,
+  );
+  assert.equal(
+    includesError(validateYaml(publicationWithChromium, "website-pages.yml"), "must not install Chromium"),
+    true,
+  );
+  assert.equal(
+    includesError(validateYaml(publicationWithoutStaticGate, "website-pages.yml"), "test:publish"),
+    true,
+  );
+});
+
+test("defines the publication command as the browser-free portion of the quality gate", async () => {
+  const packageJson = JSON.parse(
+    await readFile(new URL("../../package.json", import.meta.url), "utf8"),
+  );
+  const publicationCommand = packageJson.scripts?.["test:publish"];
+
+  assert.equal(typeof publicationCommand, "string");
+  for (const requiredScript of [
+    "test:scripts",
+    "test:workflow-policy",
+    "check:content",
+    "assets:build",
+    "assets:verify",
+    "docs:typecheck",
+    "docs:build",
+    "verify:build",
+  ]) {
+    assert.equal(
+      publicationCommand.includes(`npm run ${requiredScript}`),
+      true,
+      `test:publish must run ${requiredScript}`,
+    );
+  }
+
+  assert.doesNotMatch(publicationCommand, /playwright|chromium|test:e2e/i);
+  assert.equal(
+    packageJson.scripts?.["test:quality"],
+    "npm run test:publish && npm run test:e2e:ci",
+  );
 });
 
 test("rejects Pages permissions and actions outside website-pages.yml", () => {

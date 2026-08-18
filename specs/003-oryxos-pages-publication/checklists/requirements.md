@@ -6,7 +6,7 @@
 - [x] The exact GitHub Pages project URL and `/oryxos/` base are stated.
 - [x] Automatic `learn-main` publication and manual dispatch are defined.
 - [x] Pull-request validation is explicitly non-deploying.
-- [x] Reproducible Node/npm installation and the existing quality gate are required.
+- [x] Reproducible Node/npm installation, full browser validation, and a browser-free publication gate are required.
 - [x] Only official GitHub Pages actions are allowed.
 - [x] Build and deploy permissions are separated and least-privilege.
 - [x] The generated output directory is explicit.

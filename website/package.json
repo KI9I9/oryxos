@@ -22,7 +22,8 @@
     "verify:build": "node scripts/verify-build.mjs",
     "test:e2e:ci": "playwright test --project=chromium",
     "test:e2e:release": "playwright test --project=chromium",
-    "test:quality": "npm run test:scripts && npm run test:workflow-policy && npm run check:content && npm run assets:build && npm run assets:verify && npm run docs:typecheck && npm run docs:build && npm run verify:build && npm run test:e2e:ci"
+    "test:publish": "npm run test:scripts && npm run test:workflow-policy && npm run check:content && npm run assets:build && npm run assets:verify && npm run docs:typecheck && npm run docs:build && npm run verify:build",
+    "test:quality": "npm run test:publish && npm run test:e2e:ci"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

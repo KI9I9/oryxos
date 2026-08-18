@@ -43,8 +43,8 @@ The build job MUST:
 2. check out the repository;
 3. use `actions/setup-node` with `website/.nvmrc` and npm lockfile caching;
 4. run `npm ci` from `website/`;
-5. install Playwright Chromium with required runner dependencies;
-6. run `npm run test:quality`;
+5. run the browser-free `npm run test:publish` static publication gate;
+6. not install Chromium or run Playwright E2E;
 7. upload only `website/.vitepress/dist` through `actions/upload-pages-artifact`;
 8. use the standard artifact name `github-pages`.
 
@@ -79,5 +79,6 @@ The smoke job MUST:
 ## Pull-Request Safety
 
 Pull requests are handled only by `.github/workflows/website-ci.yml`, which retains `contents: read` and no Pages,
-OIDC, deployment environment, or public deployment action. Workflow-policy tests enforce this boundary across all
-checked-in workflow YAML files.
+OIDC, deployment environment, or public deployment action. It installs Chromium and runs the complete
+`npm run test:quality` browser gate. Workflow-policy tests enforce this boundary across all checked-in workflow
+YAML files.
