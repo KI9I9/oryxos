@@ -44,11 +44,11 @@ publication records, evidence bundles, historical restoration, automatic rollbac
 - [x] T011 Validate `.github/workflows/website-ci.yml`, `.github/workflows/website-prototype-artifact.yml`, and
   `.github/workflows/website-pages.yml` through the checked-in workflow parser and confirm exactly one workflow has
   Pages deployment capability.
-- [ ] T012 Configure `KI9I9/oryxos` Pages source as **GitHub Actions** and verify the `github-pages` environment; if
+- [x] T012 Configure `KI9I9/oryxos` Pages source as **GitHub Actions** and verify the `github-pages` environment; if
   repository permissions are unavailable, report the required owner action rather than bypassing the setting.
-- [ ] T013 Run `Publish OryxOS website` from an authorized `learn-main` revision or manual dispatch and confirm build,
+- [x] T013 Run `Publish OryxOS website` from an authorized `learn-main` revision or manual dispatch and confirm build,
   deploy, and smoke jobs succeed.
-- [ ] T014 Verify `https://ki9i9.github.io/oryxos/` and `https://ki9i9.github.io/oryxos/zh/` publicly, then record
+- [x] T014 Verify `https://ki9i9.github.io/oryxos/` and `https://ki9i9.github.io/oryxos/zh/` publicly, then record
   the successful workflow URL and public URL in the delivery summary.
 
 ## Completion Criteria
@@ -58,3 +58,23 @@ publication records, evidence bundles, historical restoration, automatic rollbac
 - Exactly one workflow can deploy GitHub Pages.
 - The existing Website quality gate passes before deployment.
 - The English and Chinese public home routes respond successfully.
+
+## Delivery Summary
+
+**Completed**: 2026-08-19
+
+**Result**: Feature 003 is complete. The repository owner confirmed the successful GitHub Actions deployment and
+verified the published Website in a browser.
+
+- Pages source: **GitHub Actions**
+- Deployment environment: `github-pages`
+- Allowed deployment branch: `learn-main`
+- Successful workflow: [Publish OryxOS website](https://github.com/KI9I9/oryxos/actions/workflows/website-pages.yml)
+- Published revision: `3fd0678`
+- English Website: <https://ki9i9.github.io/oryxos/>
+- Chinese Website: <https://ki9i9.github.io/oryxos/zh/>
+- Publication guide: [`docs/dev/action发布文档.md`](../../docs/dev/action发布文档.md)
+
+The local execution environment could not independently query GitHub APIs or `github.io` because its outbound
+proxy returned HTTP 403. Public availability and the successful build, deploy, and smoke jobs were therefore
+accepted from the repository owner's GitHub Actions and browser verification.
