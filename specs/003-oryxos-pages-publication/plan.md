@@ -1,6 +1,6 @@
 # Implementation Plan: Publish the OryxOS Website with GitHub Pages
 
-**Branch**: `learn-class-14` | **Date**: 2026-08-18 | **Spec**: [spec.md](spec.md)
+**Branch**: `learn-main` | **Date**: 2026-08-18 | **Spec**: [spec.md](spec.md)
 
 ## Summary
 

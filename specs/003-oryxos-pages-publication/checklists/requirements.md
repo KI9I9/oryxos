@@ -4,7 +4,7 @@
 
 - [x] The scope is limited to publishing the existing static Website.
 - [x] The exact GitHub Pages project URL and `/oryxos/` base are stated.
-- [x] Automatic `main` publication and manual dispatch are defined.
+- [x] Automatic `learn-main` publication and manual dispatch are defined.
 - [x] Pull-request validation is explicitly non-deploying.
 - [x] Reproducible Node/npm installation and the existing quality gate are required.
 - [x] Only official GitHub Pages actions are allowed.

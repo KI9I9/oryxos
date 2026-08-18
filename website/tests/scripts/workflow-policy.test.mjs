@@ -42,7 +42,7 @@ function createPagesWorkflow() {
 name: Publish OryxOS website
 on:
   push:
-    branches: [main]
+    branches: [learn-main]
     paths:
       - website/**
       - .github/workflows/website-*.yml
@@ -216,12 +216,12 @@ test("rejects alternate names for the privileged Pages workflow", () => {
   }
 });
 
-test("requires main push and workflow_dispatch triggers", () => {
-  const wrongBranch = createPagesWorkflow().replace("branches: [main]", "branches: [develop]");
+test("requires learn-main push and workflow_dispatch triggers", () => {
+  const wrongBranch = createPagesWorkflow().replace("branches: [learn-main]", "branches: [develop]");
   const missingDispatch = createPagesWorkflow().replace("  workflow_dispatch:\n", "");
 
   assert.equal(
-    includesError(validateYaml(wrongBranch, "website-pages.yml"), "push only from main"),
+    includesError(validateYaml(wrongBranch, "website-pages.yml"), "push only from learn-main"),
     true,
   );
   assert.equal(
@@ -233,8 +233,8 @@ test("requires main push and workflow_dispatch triggers", () => {
 test("rejects extra push filters that can publish tags", () => {
   for (const pushFilter of ["tags", "tags-ignore", "branches-ignore"]) {
     const unsafeWorkflow = createPagesWorkflow().replace(
-      "    branches: [main]",
-      `    branches: [main]\n    ${pushFilter}: [\"**\"]`,
+      "    branches: [learn-main]",
+      `    branches: [learn-main]\n    ${pushFilter}: [\"**\"]`,
     );
 
     assert.equal(

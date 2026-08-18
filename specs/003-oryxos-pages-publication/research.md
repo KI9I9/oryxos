@@ -25,9 +25,9 @@ granting a third-party action repository write access.
 **Rationale**: Website tests and static generation do not need deployment permission. Job-scoped permissions keep
 the privileged surface small without introducing a complex promotion system.
 
-## Decision 4: Publish from main and allow manual reruns
+## Decision 4: Publish from learn-main and allow manual reruns
 
-**Decision**: Trigger automatic publication for relevant changes pushed to `main`, and support
+**Decision**: Trigger automatic publication for relevant changes pushed to `learn-main`, and support
 `workflow_dispatch`. Do not add a pull-request trigger to the deployment workflow.
 
 **Rationale**: Pull requests already have a read-only validation workflow. Manual dispatch is sufficient for an

@@ -58,7 +58,7 @@ https://ki9i9.github.io/oryxos/
 
 ## 4. Automatic publication
 
-Merge or push a relevant Website change to `main`. The `Publish OryxOS website` workflow should:
+Push a relevant Website change to `learn-main`. The `Publish OryxOS website` workflow should:
 
 1. install dependencies with `npm ci`;
 2. install Chromium;
@@ -102,4 +102,4 @@ Also inspect representative internal links and assets to confirm they remain bel
 - If smoke checks fail immediately after deployment, inspect the deploy URL and Actions logs, then rerun after
   resolving the cause.
 - If a published revision must be reversed, revert the source change through the normal repository process and
-  publish the resulting `main` revision. This Feature does not implement automatic rollback.
+  publish the resulting `learn-main` revision. This Feature does not implement automatic rollback.

@@ -291,7 +291,7 @@ function inspectPagesWorkflow(workflow, filePath, errors) {
 
     const pushTrigger = triggers.push;
     if (!isPlainObject(pushTrigger)) {
-      errors.push(`${filePath}:on.push must configure main and publication paths.`);
+      errors.push(`${filePath}:on.push must configure learn-main and publication paths.`);
     } else {
       const allowedPushKeys = new Set(["branches", "paths"]);
       const unexpectedPushKeys = Object.keys(pushTrigger)
@@ -304,8 +304,8 @@ function inspectPagesWorkflow(workflow, filePath, errors) {
       }
 
       const branches = normalizeStringArray(pushTrigger.branches);
-      if (branches.length !== 1 || branches[0] !== "main") {
-        errors.push(`${filePath}:on.push.branches must push only from main.`);
+      if (branches.length !== 1 || branches[0] !== "learn-main") {
+        errors.push(`${filePath}:on.push.branches must push only from learn-main.`);
       }
 
       const paths = normalizeStringArray(pushTrigger.paths);
