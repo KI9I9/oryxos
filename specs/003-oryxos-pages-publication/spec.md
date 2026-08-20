@@ -4,6 +4,8 @@
 
 **Date**: 2026-08-18
 
+**Status**: Complete (2026-08-19)
+
 **Input**: `之前开发的官网要使用GitHub的page进行发布`
 
 ## Scope

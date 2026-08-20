@@ -19,5 +19,6 @@
 
 ## Result
 
-The specification is ready for minimal implementation. External completion still requires repository-owner access
-to enable GitHub Pages with GitHub Actions and to run the first public deployment.
+Feature 003 was completed on 2026-08-19. GitHub Pages uses GitHub Actions, the `github-pages` environment permits
+deployment from `learn-main`, the first publication succeeded, and the repository owner verified the English and
+Chinese public Website routes.
